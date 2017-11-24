@@ -20,15 +20,17 @@ export class UserListComponent implements OnInit {
     this.userService
       .getUsers()
       .then((users: User[]) => {
-        this.users = users.map((user) => {
-          // if (!contact.phone) {
-          //   contact.phone = {
-          //     mobile: '',
-          //     work: ''
-          //   }
-          // }
-          return user;
-        })
+        if (!users === undefined) {
+          this.users = users.map((user) => {
+            // if (!contact.phone) {
+            //   contact.phone = {
+            //     mobile: '',
+            //     work: ''
+            //   }
+            // }
+            return user;
+          });
+        }
       })
   }
 
@@ -41,15 +43,6 @@ export class UserListComponent implements OnInit {
   selectUser(user: User | null) {
     this.selectedUser = user;
   }
-
-  // details: string;
-  // email: string;
-  // soundcloudUrl: string;
-  // twitterUrl: string;
-  // facebookUrl: string;
-  // instagramUrl: string;
-  // snapchatUrl: string;
-  // phone: string;
 
   createNewUser() {
     var user: User = {
