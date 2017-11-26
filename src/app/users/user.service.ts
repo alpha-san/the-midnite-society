@@ -5,12 +5,13 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService {
-  private usersUrl = '/api/users';
+  private usersUrl = 'http://localhost:8080/api/users';
 
   constructor(private http: Http) { }
 
   // get('/api/users')
   getUsers(): Promise<void | User[]> {
+    console.log('getUsers');
     return this.http.get(this.usersUrl)
       .toPromise()
       .then(response => response.json() as User[])
@@ -29,6 +30,7 @@ export class UserService {
 
   // delete("/api/contacts/:id")
   deleteUser(delUserId: String): Promise<void | String> {
+    console.log('user.service.deleteUser', delUserId);
     return this.http.delete(this.usersUrl + '/' + delUserId)
       .toPromise()
       .then(response => response.json() as String)
@@ -37,10 +39,15 @@ export class UserService {
 
   // put("/api/contacts/:id")
   updateUser(putUser: User): Promise<void | User> {
+    console.log('user.service:put');
     var putUrl = this.usersUrl + '/' + putUser._id;
     return this.http.put(putUrl, putUser)
       .toPromise()
-      .then(response => response.json() as User)
+      // .then(response => response.json() as User)
+      .then(function(response) {
+        console.log('user.service.updateUser', response);
+        return response.json() as User;
+      })
       .catch(this.handleError);
   }
 

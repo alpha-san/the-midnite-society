@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
     this.userService
       .getUsers()
       .then((users: User[]) => {
-        if (!users === undefined) {
+        if (users !== undefined) {
           this.users = users.map((user) => {
             // if (!contact.phone) {
             //   contact.phone = {
@@ -32,6 +32,8 @@ export class UserListComponent implements OnInit {
           });
         }
       })
+
+      console.log(this);
   }
 
   private getIndexOfUser = (userId: String) => {
@@ -61,16 +63,18 @@ export class UserListComponent implements OnInit {
     this.selectUser(user);
   }
 
-  deleteContact = (userId: String) => {
+  deleteUser = (userId: String) => {
     var idx = this.getIndexOfUser(userId);
+    console.log('deleteUserHandlerDef', idx);
     if (idx !== -1) {
       this.users.splice(idx, 1);
-      // this.selectedUser(null);
+      this.selectUser(null);
     }
     return this.users;
   }
 
-  addContact = (user: User) => {
+  addUser = (user: User) => {
+    console.log('addUser');
     this.users.push(user);
     this.selectUser(user);
     return this.users;

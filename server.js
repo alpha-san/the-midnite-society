@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongodb = require("mongodb");
+const cors = require('cors');
 
 var ObjectID = mongodb.ObjectID;
 var USERS_COLLECTION = "users";
@@ -9,12 +10,28 @@ var ALBUMS_COLLECTION = "albums";
 var TRACK_COLLECTION = "tracks";
 var BLOGPOST_COLLECTION = "blogPosts";
 
+// allow CORS
+var originsWhitelist = [
+    'http://localhost:4200',
+    'http://www.myproductionurl.com'
+];
+var corsOptions = {
+   origin: function (origin, callback) {
+        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+        callback(null, isWhitelisted);
+    },
+    credentials: true
+};
+
 var app = express();
 app.use(bodyParser.json());
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
+
+// allow CORS
+app.use(cors(corsOptions));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
@@ -38,13 +55,14 @@ mongodb.MongoClient.connect('mongodb://heroku_pn25zh65:jll4fsplia7tc0bjjg8q5sg29
   });
 });
 
-// CONTACTS API ROUTES BELOW
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
     console.log("ERROR: " + reason);
     res.status(code || 500).json({"error": message});
   }
+
+// USER API ROUTES BELOW
   
   /*  "/api/contacts"
    *    GET: finds all contacts
@@ -63,10 +81,11 @@ function handleError(res, reason, message, code) {
   
   app.post("/api/users", function(req, res) {
     var newContact = req.body;
-    
-      if (!req.body.name) {
-        handleError(res, "Invalid user input", "Must provide a name.", 400);
-      }
+
+    // validation error checking here
+    //   if (!req.body.name) {
+    //     handleError(res, "Invalid user input", "Must provide a name.", 400);
+    //   }
     
       db.collection(USERS_COLLECTION).insertOne(newContact, function(err, doc) {
         if (err) {
@@ -77,17 +96,100 @@ function handleError(res, reason, message, code) {
       });
   });
   
-  /*  "/api/user/:id"
-   *    GET: find user by id
-   *    PUT: update user by id
-   *    DELETE: deletes user by id
-   */
-  
   app.get("/api/users/:id", function(req, res) {
   });
   
   app.put("/api/users/:id", function(req, res) {
+      var updatedUser = req.body;
+      console.log('server.js:put', updatedUser);
+
+      db.collection(USERS_COLLECTION).updateOne(
+        {"_id": new mongodb.ObjectId(updatedUser._id)}, 
+        { $set: { "firstName": updatedUser.firstName } }, 
+        { $set: updatedUser }, 
+      function(err, doc) {
+        if (err) {
+            console.log('Failed to update user', err);
+            handleError(res, err.message, "Failed to update user");
+        } else {
+            console.log('success?', doc.ops);
+            res.status(201).json(doc.ops);
+        }
+      });
   });
   
   app.delete("/api/users/:id", function(req, res) {
+    db.collection(USERS_COLLECTION).remove( { _id: new mongodb.ObjectId(req.params.id) }, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to delete user.");
+        } else {
+            // res.status(201).json(doc.ops[0]);
+            res.status(201);
+        }
+    })
+  });
+
+
+// ALBUM API ROUTES BELOW
+  
+  /*  "/api/albums"
+   *    GET: finds all albums
+   *    POST: creates a new album
+   */
+  
+  app.get("/api/albums", function(req, res) {
+    db.collection(ALBUMS_COLLECTION).find({}).toArray(function(err, docs) {
+        if (err) {
+          handleError(res, err.message, "Failed to get albums");
+        } else {
+          res.status(200).json(docs);
+        }
+      });
+  });
+  
+  app.post("/api/albums", function(req, res) {
+    var newAlbum = req.body;
+
+    // validation error checking here
+    //   if (!req.body.name) {
+    //     handleError(res, "Invalid user input", "Must provide a name.", 400);
+    //   }
+    
+      db.collection(ALBUMS_COLLECTION).insertOne(newAlbum, function(err, doc) {
+        if (err) {
+          handleError(res, err.message, "Failed to create new album.");
+        } else {
+          res.status(201).json(doc.ops[0]);
+        }
+      });
+  });
+  
+  app.get("/api/albums/:id", function(req, res) {
+  });
+  
+  app.put("/api/albums/:id", function(req, res) {
+      var updatedAlbum = req.body;
+
+      db.collection(ALBUMS_COLLECTION).updateOne(
+        {"_id": new mongodb.ObjectId(updatedAlbum._id)}, 
+        // { $set: { "firstName": updatedUser.firstName } }, 
+        { $set: updatedUser }, 
+      function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to update album");
+        } else {
+            res.status(201).json(doc.ops);
+        }
+      });
+  });
+  
+  app.delete("/api/albums/:id", function(req, res) {
+    db.collection(ALBUMS_COLLECTION).remove( { _id: new mongodb.ObjectId(req.params.id) }, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to delete album.");
+        } else {
+            // res.status(201).json(doc.ops[0]);
+            res.status(201);
+        }
+    })
   });
