@@ -1,5 +1,6 @@
 export class User {
     _id?: string;
+    artistName: string;
     firstName: string;
     lastName: string;
     details: string;

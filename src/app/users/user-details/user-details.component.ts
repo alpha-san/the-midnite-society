@@ -32,7 +32,6 @@ export class UserDetailsComponent implements OnInit {
   }
 
   deleteUser(userId: String): void {
-    console.log('deleteUser', userId);
     this.userService.deleteUser(userId).then((deletedUserId: String) => {
       this.deleteHandler(deletedUserId);
     });

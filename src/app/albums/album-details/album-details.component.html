@@ -13,8 +13,8 @@ selectUserOptions: IMultiSelectOption[] -->
       <input class="form-control" name="album-name" [(ngModel)]="album.name" placeholder="Album Name"/>
     </div>
     <div class="form-group">
-      <label for="album-artists">Artists</label>
-      <ss-multiselect-dropdown name="album-aritsts" [options]="selectUserOptions" [(ngModel)]="selectedUsers"></ss-multiselect-dropdown>
+      <label for="album-artists">Artist</label>
+      <ss-multiselect-dropdown name="album-aritsts" [options]="selectUserOptions" [(ngModel)]="selectedUser" [settings]="mySettings"></ss-multiselect-dropdown>
     </div>
     <div class="form-group">
       <label for="album-image-url">Album Image Url</label>

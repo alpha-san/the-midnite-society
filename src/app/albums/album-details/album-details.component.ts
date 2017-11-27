@@ -3,7 +3,7 @@ import { Album } from '../album';
 import { User } from '../../users/user';
 import { AlbumService } from '../album.service';
 import { UserService } from '../../users/user.service';
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'album-details',
@@ -18,8 +18,11 @@ export class AlbumDetailsComponent implements OnInit {
   @Input() deleteHandler: Function;
 
   users: User[]
-  selectedUsers: string[]
+  selectedUser: string
   selectUserOptions: IMultiSelectOption[]
+  mySettings: IMultiSelectSettings = {
+    selectionLimit: 1
+  }
 
   constructor(private albumService: AlbumService, private userService: UserService) { }
 
@@ -40,6 +43,7 @@ export class AlbumDetailsComponent implements OnInit {
   }
 
   createAlbum(album: Album) {
+    album.artist_id = this.selectedUser[0]
     this.albumService.createAlbum(album).then((newAlbum: Album) => {
       this.createHandler(newAlbum);
     })

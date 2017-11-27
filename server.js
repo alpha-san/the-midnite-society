@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
+console.log('distDir', distDir);
 app.use(express.static(distDir));
 
 // allow CORS

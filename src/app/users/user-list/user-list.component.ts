@@ -22,18 +22,10 @@ export class UserListComponent implements OnInit {
       .then((users: User[]) => {
         if (users !== undefined) {
           this.users = users.map((user) => {
-            // if (!contact.phone) {
-            //   contact.phone = {
-            //     mobile: '',
-            //     work: ''
-            //   }
-            // }
             return user;
           });
         }
       })
-
-      console.log(this);
   }
 
   private getIndexOfUser = (userId: String) => {
@@ -50,6 +42,7 @@ export class UserListComponent implements OnInit {
     var user: User = {
       firstName: '',
       lastName: '',
+      artistName: '',
       details: '',
       email: '',
       soundcloudUrl: '',
@@ -65,7 +58,6 @@ export class UserListComponent implements OnInit {
 
   deleteUser = (userId: String) => {
     var idx = this.getIndexOfUser(userId);
-    console.log('deleteUserHandlerDef', idx);
     if (idx !== -1) {
       this.users.splice(idx, 1);
       this.selectUser(null);
@@ -74,7 +66,6 @@ export class UserListComponent implements OnInit {
   }
 
   addUser = (user: User) => {
-    console.log('addUser');
     this.users.push(user);
     this.selectUser(user);
     return this.users;

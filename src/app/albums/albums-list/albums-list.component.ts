@@ -38,7 +38,7 @@ export class AlbumsListComponent implements OnInit {
     createNewAlbum() {
       var album: Album = {
         name: '',
-        artists: [],
+        artist_id: '',
         albumImageUrl: '',
         description: '',
         soundcloudUrl: '',
