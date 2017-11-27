@@ -10,6 +10,8 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
 import { UserListComponent } from './users/user-list/user-list.component';
 import { AlbumsListComponent } from './albums/albums-list/albums-list.component';
 import { AlbumDetailsComponent } from './albums/album-details/album-details.component';
+import { TrackListComponent } from './tracks/track-list/track-list.component';
+import { TrackDetailsComponent } from './tracks/track-details/track-details.component';
 
 import { UserService } from './users/user.service';
 import { AlbumService } from './albums/album.service';
@@ -19,14 +21,20 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 // define routes
 const appRoutes: Routes = [
   { 
-    path: 'users', 
+    path: 'artists', 
     component: UserListComponent ,
-    data: { title: 'Users' }
+    data: { title: 'Artists' }
   },
   {
     path: 'albums',
     component: AlbumsListComponent,
-    data: { title: 'Albums '}
+    data: { title: 'Albums'}
+  },
+
+  {
+    path: 'tracks',
+    component: TrackListComponent,
+    data: { title: 'Tracks'}
   }
 ];
 
@@ -36,7 +44,9 @@ const appRoutes: Routes = [
     UserDetailsComponent,
     UserListComponent,
     AlbumsListComponent,
-    AlbumDetailsComponent
+    AlbumDetailsComponent,
+    TrackListComponent,
+    TrackDetailsComponent
   ],
   imports: [
     BrowserModule,

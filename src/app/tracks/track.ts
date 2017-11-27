@@ -4,6 +4,7 @@ export class Track {
     album_id?: string;
     albumNumber: number;
     mainArtist_id: string;
+    artists_ids: string[];
     soundcloudUrl: string;
     youtubeUrl: string;
     trackImageUrl: string;
