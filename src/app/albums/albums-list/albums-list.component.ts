@@ -64,6 +64,7 @@ export class AlbumsListComponent implements OnInit {
     }
 
     updateAlbum = (album: Album) => {
+      console.log('updateAlubm', album);
       var idx = this.getIndexOfAlbum(album._id);
       if (idx !== -1) {
         this.albums[idx] = album;

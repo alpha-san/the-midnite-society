@@ -40,6 +40,8 @@ export class AlbumDetailsComponent implements OnInit {
           })
         }
       })
+
+    console.log('details:ngOnInit', this.album);
   }
 
   createAlbum(album: Album) {
@@ -50,6 +52,7 @@ export class AlbumDetailsComponent implements OnInit {
   }
 
   updateAlbum(album: Album) {
+    console.log('details:updateAlbum', album);
     this.albumService.updateAlbum(album).then((updatedAlbum: Album) => {
       this.updateHandler(updatedAlbum);
     })

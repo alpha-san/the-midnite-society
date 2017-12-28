@@ -5,6 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
+    "server-watch": "nodemon server.js",
+    "client-watch": "ng build --watch",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

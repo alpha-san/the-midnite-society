@@ -31,7 +31,9 @@ export class AlbumService {
   }
 
   updateAlbum(putAlbum: Album): Promise<void | Album> {
+    console.log('service:updateAlubm', putAlbum);
     var putUrl = this.albumsUrl + '/' + putAlbum._id;
+    console.log('putUrl', putUrl);
     return this.http.put(putUrl, putAlbum)
       .toPromise()
       .then(response => response.json() as Album)
