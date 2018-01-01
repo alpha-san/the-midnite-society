@@ -34,13 +34,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var distDir = path.join(__dirname + "/dist");
 app.use(express.static(distDir));
 
-// app.use(express.static(__dirname + '/dist/favicon.ico'));
-// app.use(express.static(__dirname + '/dist/inline.bundle.js'));
-// app.use(express.static(__dirname + '/dist/main.bundle.js'));
-// app.use(express.static(__dirname + '/dist/polyfills.bundle.js'));
-// app.use(express.static(__dirname + '/dist/styles.bundle.js'));
-// app.use(express.static(__dirname + '/dist/vendor.bundle.js'));
-
 // api routes
 app.use('/api/users', users);
 app.use('/api/artists', artists);
@@ -49,9 +42,9 @@ app.use('/api/tracks', tracks);
 app.use('/api/blogposts', blogposts);
 
 // send all other requests to angular app
-// app.get('*', (req, res, next) => {
-//   res.sendFile('dist/index.html', { root: __dirname});
-// });
+app.get('*', (req, res) => {
+  res.sendFile('dist/index.html', { root: __dirname});
+});
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
