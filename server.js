@@ -11,17 +11,17 @@ var tracks = require('./routes/api/tracks.routes');
 var blogposts = require('./routes/api/blogposts.routes');
 
 // allow CORS
-var originsWhitelist = [
-  'http://localhost:4200',
-  'http://www.myproductionurl.com'
-];
-var corsOptions = {
-  origin: function (origin, callback) {
-    var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
-    callback(null, isWhitelisted);
-  },
-  credentials: true
-};
+// var originsWhitelist = [
+//   'http://localhost:4200',
+//   'http://www.myproductionurl.com'
+// ];
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+//     callback(null, isWhitelisted);
+//   },
+//   credentials: true
+// };
 
 var app = express();
 app.use(bodyParser.json());
