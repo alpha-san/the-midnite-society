@@ -13,10 +13,12 @@ import { AlbumDetailsComponent } from './albums/album-details/album-details.comp
 import { TrackListComponent } from './tracks/track-list/track-list.component';
 import { TrackDetailsComponent } from './tracks/track-details/track-details.component';
 
+import { AuthService } from './auth/auth.service';
 import { UserService } from './users/user.service';
 import { AlbumService } from './albums/album.service';
 
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { CallBackComponent } from './call-back/call-back.component';
 
 // define routes
 const appRoutes: Routes = [
@@ -30,7 +32,11 @@ const appRoutes: Routes = [
     component: AlbumsListComponent,
     data: { title: 'Albums'}
   },
-
+  {
+    path: 'callback',
+    component: CallBackComponent,
+    data: { title: 'Loading'}
+  },
   {
     path: 'tracks',
     component: TrackListComponent,
@@ -46,7 +52,8 @@ const appRoutes: Routes = [
     AlbumsListComponent,
     AlbumDetailsComponent,
     TrackListComponent,
-    TrackDetailsComponent
+    TrackDetailsComponent,
+    CallBackComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,7 @@ const appRoutes: Routes = [
     MultiselectDropdownModule,
     HttpClientModule
   ],
-  providers: [UserService, AlbumService],
+  providers: [AuthService, UserService, AlbumService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

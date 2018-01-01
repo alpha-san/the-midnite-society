@@ -356,7 +356,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>The Midnite Society</h1>\n<nav>\n  <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n  <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n  <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n  <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n  <a routerLink=\"/store\" routerLinkActive=\"active\">Store</a>\n</nav>\n<router-outlet></router-outlet>"
+module.exports = "<h1>{{ title }}</h1>\n<nav>\n  <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n  <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n  <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n  <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n  <a routerLink=\"/store\" routerLinkActive=\"active\">Store</a>\n</nav>\n\n<div>\n  <button\n    class=\"btn btn-primary btn-margin\"\n    routerLink=\"/\">\n      Home\n  </button>\n\n  <button\n    class=\"btn btn-primary btn-margin\"\n    *ngIf=\"!auth.isAuthenticated()\"\n    (click)=\"auth.login()\">\n      Log In\n  </button>\n\n  <button\n    class=\"btn btn-primary btn-margin\"\n    *ngIf=\"auth.isAuthenticated()\"\n    (click)=\"auth.logout()\">\n      Log Out\n  </button>\n</div>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -366,23 +366,32 @@ module.exports = "<h1>The Midnite Society</h1>\n<nav>\n  <a routerLink=\"/artist
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'app';
+    function AppComponent(authService) {
+        this.authService = authService;
+        this.title = 'The Midnite Society';
+        this.auth = authService;
+        this.auth.handleAuthentication();
     }
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__auth_auth_service__["a" /* AuthService */]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -409,15 +418,19 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__albums_album_details_album_details_component__ = __webpack_require__("../../../../../src/app/albums/album-details/album-details.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__tracks_track_list_track_list_component__ = __webpack_require__("../../../../../src/app/tracks/track-list/track-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__tracks_track_details_track_details_component__ = __webpack_require__("../../../../../src/app/tracks/track-details/track-details.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__users_user_service__ = __webpack_require__("../../../../../src/app/users/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__albums_album_service__ = __webpack_require__("../../../../../src/app/albums/album.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular_2_dropdown_multiselect__ = __webpack_require__("../../../../angular-2-dropdown-multiselect/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__users_user_service__ = __webpack_require__("../../../../../src/app/users/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__albums_album_service__ = __webpack_require__("../../../../../src/app/albums/album.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular_2_dropdown_multiselect__ = __webpack_require__("../../../../angular-2-dropdown-multiselect/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__ = __webpack_require__("../../../../../src/app/call-back/call-back.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -447,6 +460,11 @@ var appRoutes = [
         data: { title: 'Albums' }
     },
     {
+        path: 'callback',
+        component: __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__["a" /* CallBackComponent */],
+        data: { title: 'Loading' }
+    },
+    {
         path: 'tracks',
         component: __WEBPACK_IMPORTED_MODULE_11__tracks_track_list_track_list_component__["a" /* TrackListComponent */],
         data: { title: 'Tracks' }
@@ -464,21 +482,170 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_9__albums_albums_list_albums_list_component__["a" /* AlbumsListComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__albums_album_details_album_details_component__["a" /* AlbumDetailsComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__tracks_track_list_track_list_component__["a" /* TrackListComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__tracks_track_details_track_details_component__["a" /* TrackDetailsComponent */]
+                __WEBPACK_IMPORTED_MODULE_12__tracks_track_details_track_details_component__["a" /* TrackDetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__["a" /* CallBackComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* RouterModule */].forRoot(appRoutes, { enableTracing: true }),
-                __WEBPACK_IMPORTED_MODULE_15_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* RouterModule */].forRoot(appRoutes, { enableTracing: true }),
+                __WEBPACK_IMPORTED_MODULE_16_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClientModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_13__users_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_14__albums_album_service__["a" /* AlbumService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_13__auth_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_14__users_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__albums_album_service__["a" /* AlbumService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/auth/auth.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_auth0_js__ = __webpack_require__("../../../../auth0-js/src/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_auth0_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_auth0_js__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AuthService = (function () {
+    function AuthService(router) {
+        this.router = router;
+        this.auth0 = new __WEBPACK_IMPORTED_MODULE_3_auth0_js__["WebAuth"]({
+            clientID: 'YfSxnJ0UEBPNggkB91LRFo3pCfnA2Yzk',
+            domain: 'the-midnite-society.auth0.com',
+            responseType: 'token id_token',
+            audience: 'https://the-midnite-society.auth0.com/userinfo',
+            redirectUri: 'http://localhost:8080/callback',
+            scope: 'openid'
+        });
+    }
+    AuthService.prototype.login = function () {
+        this.auth0.authorize();
+    };
+    AuthService.prototype.handleAuthentication = function () {
+        var _this = this;
+        // add new users here!
+        this.auth0.parseHash(function (err, authResult) {
+            if (authResult && authResult.accessToken && authResult.idToken) {
+                window.location.hash = '';
+                _this.setSession(authResult);
+                // this.router.navigate(['/home']);
+                _this.router.navigate(['/']);
+            }
+            else if (err) {
+                // this.router.navigate(['/home']);
+                _this.router.navigate(['/']);
+                console.log(err);
+            }
+        });
+    };
+    AuthService.prototype.setSession = function (authResult) {
+        // Set the time that the access token will expire at
+        var expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+        localStorage.setItem('access_token', authResult.accessToken);
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('expires_at', expiresAt);
+    };
+    AuthService.prototype.logout = function () {
+        // Remove tokens and expiry time from localStorage
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('expires_at');
+        // Go back to the home route
+        this.router.navigate(['/']);
+    };
+    AuthService.prototype.isAuthenticated = function () {
+        // Check whether the current time is past the
+        // access token's expiry time
+        var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+        return new Date().getTime() < expiresAt;
+    };
+    AuthService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
+    ], AuthService);
+    return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/call-back/call-back.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/call-back/call-back.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"loading\">\n  <img src=\"assets/loading.svg\" alt=\"loading\">\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/call-back/call-back.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CallBackComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CallBackComponent = (function () {
+    function CallBackComponent() {
+    }
+    CallBackComponent.prototype.ngOnInit = function () {
+    };
+    CallBackComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-call-back',
+            template: __webpack_require__("../../../../../src/app/call-back/call-back.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/call-back/call-back.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CallBackComponent);
+    return CallBackComponent;
 }());
 
 
