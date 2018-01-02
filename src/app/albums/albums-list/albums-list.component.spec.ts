@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { AlbumService } from '../album.service';
+import { AlbumMockService } from '../album-mock.service';
 
 import { AlbumsListComponent } from './albums-list.component';
 
@@ -8,7 +10,13 @@ describe('AlbumsListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlbumsListComponent ]
+      declarations: [ AlbumsListComponent ],
+      providers: [
+        {
+          provide: AlbumService,
+          use: AlbumMockService
+        }
+      ]
     })
     .compileComponents();
   }));
@@ -22,4 +30,8 @@ describe('AlbumsListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should...', inject([AlbumMockService], (service: AlbumService) => {
+    expect(service).toBeTruthy();
+  }));
 });

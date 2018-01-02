@@ -213,7 +213,9 @@ var AlbumService = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Album; });
 var Album = (function () {
-    function Album() {
+    function Album(values) {
+        if (values === void 0) { values = {}; }
+        Object.assign(this, values);
     }
     return Album;
 }());
@@ -1075,7 +1077,9 @@ var UserService = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
 var User = (function () {
-    function User() {
+    function User(values) {
+        if (values === void 0) { values = {}; }
+        Object.assign(this, values);
     }
     return User;
 }());

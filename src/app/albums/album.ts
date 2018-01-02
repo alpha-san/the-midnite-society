@@ -8,4 +8,8 @@ export class Album {
     description: string;
     soundcloudUrl: string;
     youtubeUrl: string;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }

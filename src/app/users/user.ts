@@ -11,4 +11,8 @@ export class User {
     instagramUrl: string;
     snapchatUrl: string;
     phone: string;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
 }
