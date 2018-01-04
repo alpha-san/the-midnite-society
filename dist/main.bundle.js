@@ -358,7 +358,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{ title }}</h1>\n<nav>\n  <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n  <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n  <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n  <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n  <a routerLink=\"/store\" routerLinkActive=\"active\">Store</a>\n</nav>\n\n<div>\n  <button\n    class=\"btn btn-primary btn-margin\"\n    routerLink=\"/\">\n      Home\n  </button>\n\n  <button\n    class=\"btn btn-primary btn-margin\"\n    *ngIf=\"!auth.isAuthenticated()\"\n    (click)=\"auth.login()\">\n      Log In\n  </button>\n\n  <button\n    class=\"btn btn-primary btn-margin\"\n    *ngIf=\"auth.isAuthenticated()\"\n    (click)=\"auth.logout()\">\n      Log Out\n  </button>\n</div>\n<router-outlet></router-outlet>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/artists\" routerLinkActive=\"active\">Artist Roster</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Work</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerlink=\"/users\" routerlinkactive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerlink=\"/artists\" routerlinkactive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerlink=\"/albums\" routerlinkactive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<!-- <nav>\n  <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n  <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n  <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n  <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n  <a routerLink=\"/store\" routerLinkActive=\"active\">Store</a>\n</nav> -->\n\n<div class=\"container\">\n  <div>\n    <button class=\"btn btn-primary btn-margin\" routerLink=\"/\">\n      Home\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">\n      Log In\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">\n      Log Out\n    </button>\n  </div>\n  <h1>{{ title }}</h1>\n  <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -425,12 +425,22 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__albums_album_service__ = __webpack_require__("../../../../../src/app/albums/album.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular_2_dropdown_multiselect__ = __webpack_require__("../../../../angular-2-dropdown-multiselect/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__ = __webpack_require__("../../../../../src/app/call-back/call-back.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__artists_artist_show_artist_show_component__ = __webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__artists_artist_list_artist_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__artists_artist_admin_list_artist_admin_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__artists_artist_detials_artist_detials_component__ = __webpack_require__("../../../../../src/app/artists/artist-detials/artist-detials.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
 
 
 
@@ -485,7 +495,12 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_10__albums_album_details_album_details_component__["a" /* AlbumDetailsComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__tracks_track_list_track_list_component__["a" /* TrackListComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__tracks_track_details_track_details_component__["a" /* TrackDetailsComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__["a" /* CallBackComponent */]
+                __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__["a" /* CallBackComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__artists_artist_detials_artist_detials_component__["a" /* ArtistDetialsComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__home_home_component__["a" /* HomeComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -500,6 +515,250 @@ var AppModule = (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  artist-admin-list works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistAdminListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ArtistAdminListComponent = (function () {
+    function ArtistAdminListComponent() {
+    }
+    ArtistAdminListComponent.prototype.ngOnInit = function () {
+    };
+    ArtistAdminListComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-artist-admin-list',
+            template: __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ArtistAdminListComponent);
+    return ArtistAdminListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-detials/artist-detials.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-detials/artist-detials.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  artist-detials works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-detials/artist-detials.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistDetialsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ArtistDetialsComponent = (function () {
+    function ArtistDetialsComponent() {
+    }
+    ArtistDetialsComponent.prototype.ngOnInit = function () {
+    };
+    ArtistDetialsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-artist-detials',
+            template: __webpack_require__("../../../../../src/app/artists/artist-detials/artist-detials.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/artists/artist-detials/artist-detials.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ArtistDetialsComponent);
+    return ArtistDetialsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-list/artist-list.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-list/artist-list.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  artist-list works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-list/artist-list.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ArtistListComponent = (function () {
+    function ArtistListComponent() {
+    }
+    ArtistListComponent.prototype.ngOnInit = function () {
+    };
+    ArtistListComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-artist-list',
+            template: __webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ArtistListComponent);
+    return ArtistListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-show/artist-show.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-show/artist-show.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  artist-show works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist-show/artist-show.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistShowComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ArtistShowComponent = (function () {
+    function ArtistShowComponent() {
+    }
+    ArtistShowComponent.prototype.ngOnInit = function () {
+    };
+    ArtistShowComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-artist-show',
+            template: __webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ArtistShowComponent);
+    return ArtistShowComponent;
 }());
 
 
@@ -648,6 +907,67 @@ var CallBackComponent = (function () {
         __metadata("design:paramtypes", [])
     ], CallBackComponent);
     return CallBackComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/home/home.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/home/home.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  home works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/home/home.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HomeComponent = (function () {
+    function HomeComponent() {
+    }
+    HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-home',
+            template: __webpack_require__("../../../../../src/app/home/home.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/home/home.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], HomeComponent);
+    return HomeComponent;
 }());
 
 
@@ -969,14 +1289,8 @@ var UserListComponent = (function () {
         var user = {
             firstName: '',
             lastName: '',
-            artistName: '',
             details: '',
             email: '',
-            soundcloudUrl: '',
-            twitterUrl: '',
-            facebookUrl: '',
-            instagramUrl: '',
-            snapchatUrl: '',
             phone: ''
         };
         this.selectUser(user);

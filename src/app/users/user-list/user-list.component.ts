@@ -42,14 +42,8 @@ export class UserListComponent implements OnInit {
     var user: User = {
       firstName: '',
       lastName: '',
-      artistName: '',
       details: '',
       email: '',
-      soundcloudUrl: '',
-      twitterUrl: '',
-      facebookUrl: '',
-      instagramUrl: '',
-      snapchatUrl: '',
       phone: ''
     }
 

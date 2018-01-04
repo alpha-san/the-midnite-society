@@ -19,6 +19,11 @@ import { AlbumService } from './albums/album.service';
 
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { CallBackComponent } from './call-back/call-back.component';
+import { ArtistShowComponent } from './artists/artist-show/artist-show.component';
+import { ArtistListComponent } from './artists/artist-list/artist-list.component';
+import { ArtistAdminListComponent } from './artists/artist-admin-list/artist-admin-list.component';
+import { ArtistDetialsComponent } from './artists/artist-detials/artist-detials.component';
+import { HomeComponent } from './home/home.component';
 
 // define routes
 const appRoutes: Routes = [
@@ -53,7 +58,12 @@ const appRoutes: Routes = [
     AlbumDetailsComponent,
     TrackListComponent,
     TrackDetailsComponent,
-    CallBackComponent
+    CallBackComponent,
+    ArtistShowComponent,
+    ArtistListComponent,
+    ArtistAdminListComponent,
+    ArtistDetialsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
