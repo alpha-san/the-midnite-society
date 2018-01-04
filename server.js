@@ -53,6 +53,8 @@ var db;
 // mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
 app.mongodb = mongodb;
 
+// heroku remote uri
+// mongodb.MongoClient.connect('mongodb://heroku_pn25zh65:jll4fsplia7tc0bjjg8q5sg299@ds119486.mlab.com:19486/heroku_pn25zh65', function (err, database) {
 mongodb.MongoClient.connect('mongodb://heroku_pn25zh65:jll4fsplia7tc0bjjg8q5sg299@ds119486.mlab.com:19486/heroku_pn25zh65', function (err, database) {
   if (err) {
     console.log(err);

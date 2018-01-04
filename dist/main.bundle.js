@@ -358,7 +358,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/artists\" routerLinkActive=\"active\">Artist Roster</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Work</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerlink=\"/users\" routerlinkactive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerlink=\"/artists\" routerlinkactive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerlink=\"/albums\" routerlinkactive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<!-- <nav>\n  <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n  <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n  <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n  <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n  <a routerLink=\"/store\" routerLinkActive=\"active\">Store</a>\n</nav> -->\n\n<div class=\"container\">\n  <div>\n    <button class=\"btn btn-primary btn-margin\" routerLink=\"/\">\n      Home\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">\n      Log In\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">\n      Log Out\n    </button>\n  </div>\n  <h1>{{ title }}</h1>\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artist Roster</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Work</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<!-- <nav>\n  <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n  <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n  <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n  <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n  <a routerLink=\"/store\" routerLinkActive=\"active\">Store</a>\n</nav> -->\n\n<div class=\"container\">\n  <div>\n    <button class=\"btn btn-primary btn-margin\" routerLink=\"/\">\n      Home\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">\n      Log In\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">\n      Log Out\n    </button>\n  </div>\n  <h1>{{ title }}</h1>\n  <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -427,8 +427,8 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__ = __webpack_require__("../../../../../src/app/call-back/call-back.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__artists_artist_show_artist_show_component__ = __webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__artists_artist_list_artist_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__artists_artist_admin_list_artist_admin_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__artists_artist_detials_artist_detials_component__ = __webpack_require__("../../../../../src/app/artists/artist-detials/artist-detials.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__artists_artist_details_artist_details_component__ = __webpack_require__("../../../../../src/app/artists/artist-details/artist-details.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__artists_artist_admin_list_artist_admin_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -461,20 +461,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // define routes
 var appRoutes = [
+    // public routes
+    {
+        path: 'artist/all',
+        component: __WEBPACK_IMPORTED_MODULE_19__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
+        data: { title: 'Artists' }
+    },
+    {
+        path: 'artists/show',
+        component: __WEBPACK_IMPORTED_MODULE_18__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
+        data: { title: 'Artists' }
+    },
+    {
+        path: 'callback',
+        component: __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__["a" /* CallBackComponent */],
+        data: { title: 'Loading' }
+    },
+    // admin routes
+    {
+        path: 'users',
+        component: __WEBPACK_IMPORTED_MODULE_8__users_user_list_user_list_component__["a" /* UserListComponent */],
+        data: { title: 'Users' }
+    },
     {
         path: 'artists',
-        component: __WEBPACK_IMPORTED_MODULE_8__users_user_list_user_list_component__["a" /* UserListComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_21__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
         data: { title: 'Artists' }
     },
     {
         path: 'albums',
         component: __WEBPACK_IMPORTED_MODULE_9__albums_albums_list_albums_list_component__["a" /* AlbumsListComponent */],
         data: { title: 'Albums' }
-    },
-    {
-        path: 'callback',
-        component: __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__["a" /* CallBackComponent */],
-        data: { title: 'Loading' }
     },
     {
         path: 'tracks',
@@ -498,8 +515,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_17__call_back_call_back_component__["a" /* CallBackComponent */],
                 __WEBPACK_IMPORTED_MODULE_18__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
                 __WEBPACK_IMPORTED_MODULE_19__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__artists_artist_detials_artist_detials_component__["a" /* ArtistDetialsComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__artists_artist_details_artist_details_component__["a" /* ArtistDetailsComponent */],
                 __WEBPACK_IMPORTED_MODULE_22__home_home_component__["a" /* HomeComponent */]
             ],
             imports: [
@@ -582,7 +599,7 @@ var ArtistAdminListComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/artists/artist-detials/artist-detials.component.css":
+/***/ "../../../../../src/app/artists/artist-details/artist-details.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -600,18 +617,18 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/artists/artist-detials/artist-detials.component.html":
+/***/ "../../../../../src/app/artists/artist-details/artist-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  artist-detials works!\n</p>\n"
+module.exports = "<p>\n  artist-details works!\n</p>\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/artists/artist-detials/artist-detials.component.ts":
+/***/ "../../../../../src/app/artists/artist-details/artist-details.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistDetialsComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistDetailsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -623,20 +640,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ArtistDetialsComponent = (function () {
-    function ArtistDetialsComponent() {
+var ArtistDetailsComponent = (function () {
+    function ArtistDetailsComponent() {
     }
-    ArtistDetialsComponent.prototype.ngOnInit = function () {
+    ArtistDetailsComponent.prototype.ngOnInit = function () {
     };
-    ArtistDetialsComponent = __decorate([
+    ArtistDetailsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-artist-detials',
-            template: __webpack_require__("../../../../../src/app/artists/artist-detials/artist-detials.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/artists/artist-detials/artist-detials.component.css")]
+            selector: 'app-artist-details',
+            template: __webpack_require__("../../../../../src/app/artists/artist-details/artist-details.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/artists/artist-details/artist-details.component.css")]
         }),
         __metadata("design:paramtypes", [])
-    ], ArtistDetialsComponent);
-    return ArtistDetialsComponent;
+    ], ArtistDetailsComponent);
+    return ArtistDetailsComponent;
 }());
 
 
@@ -674,6 +691,7 @@ module.exports = "<p>\n  artist-list works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__artist_service__ = __webpack_require__("../../../../../src/app/artists/artist.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -684,10 +702,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ArtistListComponent = (function () {
-    function ArtistListComponent() {
+    function ArtistListComponent(artistService) {
+        var _this = this;
+        this.artistService = artistService;
+        this.getIndexOfArtist = function (artistId) {
+            return _this.artists.findIndex(function (artist) {
+                return artist._id === artistId;
+            });
+        };
+        this.deleteartist = function (artistId) {
+            var idx = _this.getIndexOfArtist(artistId);
+            if (idx !== -1) {
+                _this.artists.splice(idx, 1);
+                _this.selectArtist(null);
+            }
+            return _this.artists;
+        };
+        this.addartist = function (artist) {
+            _this.artists.push(artist);
+            _this.selectArtist(artist);
+            return _this.artists;
+        };
+        this.updateartist = function (artist) {
+            var idx = _this.getIndexOfArtist(artist._id);
+            if (idx !== -1) {
+                _this.artists[idx] = artist;
+                _this.selectArtist(artist);
+            }
+            return _this.artists;
+        };
     }
     ArtistListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.artistService
+            .getArtists()
+            .then(function (artists) {
+            if (artists !== undefined) {
+                _this.artists = artists.map(function (artist) {
+                    return artist;
+                });
+            }
+        });
+    };
+    ArtistListComponent.prototype.selectArtist = function (artist) {
+        this.selectedArtist = artist;
+    };
+    ArtistListComponent.prototype.createNewArtist = function () {
+        var artist = {
+            firstName: '',
+            lastName: '',
+            details: '',
+            email: '',
+            phone: '',
+            artistName: '',
+            soundcloudUrl: '',
+            twitterUrl: '',
+            facebookUrl: '',
+            instagramUrl: '',
+            snapchatUrl: '',
+            tagLine: '',
+            biography: '',
+            isAdmin: false
+        };
+        this.selectArtist(artist);
     };
     ArtistListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -695,7 +774,7 @@ var ArtistListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__artist_service__["a" /* ArtistService */]])
     ], ArtistListComponent);
     return ArtistListComponent;
 }());
@@ -759,6 +838,80 @@ var ArtistShowComponent = (function () {
         __metadata("design:paramtypes", [])
     ], ArtistShowComponent);
     return ArtistShowComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/artists/artist.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ArtistService = (function () {
+    function ArtistService(http) {
+        this.http = http;
+        this.artistsUrl = '/api/artists';
+    }
+    // get('/api/artists')
+    ArtistService.prototype.getArtists = function () {
+        return this.http.get(this.artistsUrl)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    // post("/api/artists")
+    ArtistService.prototype.createArtist = function (newArtist) {
+        return this.http.post(this.artistsUrl, newArtist)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    // get("/api/contacts/:id") endpoint not used by Angular app
+    // delete("/api/contacts/:id")
+    ArtistService.prototype.deleteArtist = function (delArtistId) {
+        return this.http.delete(this.artistsUrl + '/' + delArtistId)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    // put("/api/contacts/:id")
+    ArtistService.prototype.updateArtist = function (putArtist) {
+        var putUrl = this.artistsUrl + '/' + putArtist._id;
+        return this.http.put(putUrl, putArtist)
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    ArtistService.prototype.handleError = function (error) {
+        var errMsg = (error.message) ? error.message :
+            error.status ? error.status + " - " + error.statusText : 'Server error';
+        console.error(errMsg); // log to console instead
+    };
+    ArtistService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    ], ArtistService);
+    return ArtistService;
 }());
 
 

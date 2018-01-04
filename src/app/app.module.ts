@@ -21,26 +21,43 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { CallBackComponent } from './call-back/call-back.component';
 import { ArtistShowComponent } from './artists/artist-show/artist-show.component';
 import { ArtistListComponent } from './artists/artist-list/artist-list.component';
+import { ArtistDetailsComponent } from './artists/artist-details/artist-details.component';
 import { ArtistAdminListComponent } from './artists/artist-admin-list/artist-admin-list.component';
-import { ArtistDetialsComponent } from './artists/artist-detials/artist-detials.component';
 import { HomeComponent } from './home/home.component';
 
 // define routes
 const appRoutes: Routes = [
+  // public routes
+  { 
+    path: 'artist/all', 
+    component: ArtistListComponent ,
+    data: { title: 'Artists' }
+  },
+  { 
+    path: 'artists/show', 
+    component: ArtistShowComponent ,
+    data: { title: 'Artists' }
+  },
+  {
+    path: 'callback',
+    component: CallBackComponent,
+    data: { title: 'Loading'}
+  },
+  // admin routes
+  { 
+    path: 'users', 
+    component: UserListComponent ,
+    data: { title: 'Users' }
+  },
   { 
     path: 'artists', 
-    component: UserListComponent ,
+    component: ArtistAdminListComponent ,
     data: { title: 'Artists' }
   },
   {
     path: 'albums',
     component: AlbumsListComponent,
     data: { title: 'Albums'}
-  },
-  {
-    path: 'callback',
-    component: CallBackComponent,
-    data: { title: 'Loading'}
   },
   {
     path: 'tracks',
@@ -62,7 +79,7 @@ const appRoutes: Routes = [
     ArtistShowComponent,
     ArtistListComponent,
     ArtistAdminListComponent,
-    ArtistDetialsComponent,
+    ArtistDetailsComponent,
     HomeComponent
   ],
   imports: [

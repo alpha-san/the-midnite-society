@@ -11,7 +11,7 @@ export class ArtistService {
   constructor(private http: Http) { }
 
   // get('/api/artists')
-  getartists(): Promise<void | Artist[]> {
+  getArtists(): Promise<void | Artist[]> {
     return this.http.get(this.artistsUrl)
       .toPromise()
       .then(response => response.json() as Artist[])
@@ -19,7 +19,7 @@ export class ArtistService {
   }
 
   // post("/api/artists")
-  createartist(newArtist: Artist): Promise<void | Artist> {
+  createArtist(newArtist: Artist): Promise<void | Artist> {
     return this.http.post(this.artistsUrl, newArtist)
       .toPromise()
       .then(response => response.json() as Artist)
@@ -29,7 +29,7 @@ export class ArtistService {
   // get("/api/contacts/:id") endpoint not used by Angular app
 
   // delete("/api/contacts/:id")
-  deleteartist(delArtistId: String): Promise<void | String> {
+  deleteArtist(delArtistId: String): Promise<void | String> {
     return this.http.delete(this.artistsUrl + '/' + delArtistId)
       .toPromise()
       .then(response => response.json() as String)
@@ -37,7 +37,7 @@ export class ArtistService {
   }
 
   // put("/api/contacts/:id")
-  updateartist(putArtist: Artist): Promise<void | Artist> {
+  updateArtist(putArtist: Artist): Promise<void | Artist> {
     var putUrl = this.artistsUrl + '/' + putArtist._id;
     return this.http.put(putUrl, putArtist)
       .toPromise()
