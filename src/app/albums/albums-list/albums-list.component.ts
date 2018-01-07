@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../album';
 import { AlbumService } from '../album.service';
-import { User } from '../../users/user';
+// import { User } from '../../users/user';
 import { AlbumDetailsComponent } from '../album-details/album-details.component';
 
 @Component({

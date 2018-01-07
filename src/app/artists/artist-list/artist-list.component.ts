@@ -4,9 +4,10 @@ import { ArtistService } from '../artist.service';
 import { ArtistDetailsComponent } from '../artist-details/artist-details.component';
 
 @Component({
-  selector: 'app-artist-list',
+  selector: 'artist-list',
   templateUrl: './artist-list.component.html',
-  styleUrls: ['./artist-list.component.css']
+  styleUrls: ['./artist-list.component.css'],
+  providers: [ArtistService]
 })
 export class ArtistListComponent implements OnInit {
 
@@ -58,7 +59,7 @@ export class ArtistListComponent implements OnInit {
     this.selectArtist(artist);
   }
 
-  deleteartist = (artistId: String) => {
+  deleteArtist = (artistId: String) => {
     var idx = this.getIndexOfArtist(artistId);
     if (idx !== -1) {
       this.artists.splice(idx, 1);
@@ -67,13 +68,13 @@ export class ArtistListComponent implements OnInit {
     return this.artists;
   }
 
-  addartist = (artist: Artist) => {
+  addArtist = (artist: Artist) => {
     this.artists.push(artist);
     this.selectArtist(artist);
     return this.artists;
   }
 
-  updateartist = (artist: Artist) => {
+  updateArtist = (artist: Artist) => {
     var idx = this.getIndexOfArtist(artist._id);
     if (idx !== -1) {
       this.artists[idx] = artist;

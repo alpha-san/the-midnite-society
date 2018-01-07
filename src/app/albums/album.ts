@@ -1,5 +1,3 @@
-import { User } from '../users/user';
-
 export class Album {
     _id?: string;
     name: string;

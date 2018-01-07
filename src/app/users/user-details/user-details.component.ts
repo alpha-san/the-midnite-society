@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../user';
+import { IUserModel } from '../user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  @Input() user: User;
+  @Input() user: IUserModel;
 
   @Input() createHandler: Function;
   @Input() updateHandler: Function;
@@ -19,14 +19,14 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
-  createUser(user: User) {
-    this.userService.createUser(user).then((newUser: User) => {
+  createUser(user: IUserModel) {
+    this.userService.createUser(user).then((newUser: IUserModel) => {
       this.createHandler(newUser);
     });
   }
 
-  updateUser(user: User) {
-    this.userService.updateUser(user).then((updatedUser: User) => {
+  updateUser(user: IUserModel) {
+    this.userService.updateUser(user).then((updatedUser: IUserModel) => {
       this.updateHandler(updatedUser);
     });
   }

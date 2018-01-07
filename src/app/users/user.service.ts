@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { UserModel, IUserModel } from './user';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -10,18 +10,18 @@ export class UserService {
   constructor(private http: Http) { }
 
   // get('/api/users')
-  getUsers(): Promise<void | User[]> {
+  getUsers(): Promise<void | IUserModel[]> {
     return this.http.get(this.usersUrl)
       .toPromise()
-      .then(response => response.json() as User[])
+      .then(response => response.json() as IUserModel[])
       .catch(this.handleError);
   }
 
   // post("/api/users")
-  createUser(newUser: User): Promise<void | User> {
+  createUser(newUser: IUserModel): Promise<void | IUserModel> {
     return this.http.post(this.usersUrl, newUser)
       .toPromise()
-      .then(response => response.json() as User)
+      .then(response => response.json() as IUserModel)
       .catch(this.handleError);
   }
 
@@ -36,12 +36,12 @@ export class UserService {
   }
 
   // put("/api/contacts/:id")
-  updateUser(putUser: User): Promise<void | User> {
+  updateUser(putUser: IUserModel): Promise<void | IUserModel> {
     var putUrl = this.usersUrl + '/' + putUser._id;
     return this.http.put(putUrl, putUser)
       .toPromise()
       .then(function(response) {
-        return response.json() as User;
+        return response.json() as IUserModel;
       })
       .catch(this.handleError);
   }

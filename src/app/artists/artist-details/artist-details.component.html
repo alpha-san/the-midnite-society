@@ -1,3 +1,57 @@
-<p>
-  artist-details works!
-</p>
+<div *ngIf="artist" class="row">
+  <div class="col-md-12">
+    <h2 *ngIf="artist._id">Artist Details</h2>
+    <h2 *ngIf="!artist._id">New Artist</h2>
+  </div>
+</div>
+<div *ngIf="artist" class="row">
+  <form class="col-md-12">
+    <div class="form-group">
+      <label for="artist-firstname">First Name</label>
+      <input class="form-control" name="artist-firstname" [(ngModel)]="artist.firstName" placeholder="First Name"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-lastname">Last Name</label>
+      <input class="form-control" name="artist-lastname" [(ngModel)]="artist.lastName" placeholder="Last Name"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-artistname">Artist Name</label>
+      <input class="form-control" name="artist-artistname" [(ngModel)]="artist.artistName" placeholder="diplo"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-details">Details</label>
+      <input class="form-control" name="artist-details" [(ngModel)]="artist.details" placeholder="Details"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-email">Email</label>
+      <input class="form-control" name="artist-email" [(ngModel)]="artist.email" placeholder="meh@meh.com"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-soundcloud-url">Soundcloud URL</label>
+      <input class="form-control" name="artist-soundcloud-url" [(ngModel)]="artist.soundcloudUrl" placeholder="soundcloud.com/dopeartistzcollective"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-twitter-url">Twitter URL</label>
+      <input class="form-control" name="artist-twitter-url" [(ngModel)]="artist.twitterUrl" placeholder="twitter.com/the_donald"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-facebook-url">Facebook URL</label>
+      <input class="form-control" name="artist-facebook-url" [(ngModel)]="artist.facebookUrl" placeholder="facebook.com/"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-instagram-url">Instagram URL</label>
+      <input class="form-control" name="artist-instagram-url" [(ngModel)]="artist.instagramUrl" placeholder="instagram.com/"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-snapchat-url">Snapchat ID</label>
+      <input class="form-control" name="artist-snapchat-url" [(ngModel)]="artist.snapchatUrl" placeholder="snapchat.com/"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-phone-number">Phone Number</label>
+      <input class="form-control" name="artist-phone-number" [(ngModel)]="artist.phone" placeholder="(800)888-8888"/>
+    </div>
+    <button class="btn btn-primary" *ngIf="!artist._id" (click)="createArtist(artist)">Create</button>
+    <button class="btn btn-info" *ngIf="artist._id" (click)="updateArtist(artist)">Update</button>
+    <button class="btn btn-danger" *ngIf="artist._id" (click)="deleteArtist(artist._id)">Delete</button>
+  </form>
+</div>

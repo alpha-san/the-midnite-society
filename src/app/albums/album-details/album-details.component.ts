@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Album } from '../album';
-import { User } from '../../users/user';
+import { IUserModel } from '../../users/user';
 import { AlbumService } from '../album.service';
 import { UserService } from '../../users/user.service';
 import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
@@ -17,7 +17,7 @@ export class AlbumDetailsComponent implements OnInit {
   @Input() updateHandler: Function;
   @Input() deleteHandler: Function;
 
-  users: User[]
+  users: IUserModel[]
   selectedUser: string
   selectUserOptions: IMultiSelectOption[]
   mySettings: IMultiSelectSettings = {
@@ -29,7 +29,7 @@ export class AlbumDetailsComponent implements OnInit {
   ngOnInit() {
     this.userService
       .getUsers()
-      .then((users: User[]) => {
+      .then((users: IUserModel[]) => {
         if (users !== undefined) {
           this.users = users.map((user) => {
             return user;

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { environment } from '../environments/environment';
+// access environment variables from here
+// ex: environment.foo
 
 @Component({
   selector: 'app-root',

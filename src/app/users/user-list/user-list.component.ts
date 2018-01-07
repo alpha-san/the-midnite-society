@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user';
+import { UserModel, IUserModel } from '../user';
 import { UserService } from '../user.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 
@@ -11,15 +11,16 @@ import { UserDetailsComponent } from '../user-details/user-details.component';
 })
 export class UserListComponent implements OnInit {
 
-  users: User[]
-  selectedUser: User
+  users: IUserModel[]
+  selectedUser: IUserModel
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+
     this.userService
       .getUsers()
-      .then((users: User[]) => {
+      .then((users: IUserModel[]) => {
         if (users !== undefined) {
           this.users = users.map((user) => {
             return user;
@@ -34,20 +35,38 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  selectUser(user: User | null) {
+  selectUser(user: IUserModel | null) {
     this.selectedUser = user;
   }
 
   createNewUser() {
-    var user: User = {
+   
+    var user: IUserModel = {
       firstName: '',
       lastName: '',
       details: '',
       email: '',
-      phone: ''
-    }
+      phone: '',
+      createdAt: new Date(),
+      modifiedAt: new Date()
+    };
 
     this.selectUser(user);
+
+    // UserModel.createUser('', '', '', '', '').then(res => {
+    //   this.selectUser(<IUserModel>res);
+    // }, err => {
+    //   if (err) { 
+    //     console.log(err.message);
+    //   }
+    // });
+    // var user: User = {
+    //   firstName: '',
+    //   lastName: '',
+    //   details: '',
+    //   email: '',
+    //   phone: ''
+    // }
   }
 
   deleteUser = (userId: String) => {
@@ -59,13 +78,13 @@ export class UserListComponent implements OnInit {
     return this.users;
   }
 
-  addUser = (user: User) => {
+  addUser = (user: IUserModel) => {
     this.users.push(user);
     this.selectUser(user);
     return this.users;
   }
 
-  updateUser = (user: User) => {
+  updateUser = (user: IUserModel) => {
     var idx = this.getIndexOfUser(user._id);
     if (idx !== -1) {
       this.users[idx] = user;
