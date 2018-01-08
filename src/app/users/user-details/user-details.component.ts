@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IUserModel } from '../user';
 import { UserService } from '../user.service';
+import * as mongoose from 'mongoose';
 
 @Component({
   selector: 'user-details',
@@ -20,6 +21,8 @@ export class UserDetailsComponent implements OnInit {
   }
 
   createUser(user: IUserModel) {
+
+
     this.userService.createUser(user).then((newUser: IUserModel) => {
       this.createHandler(newUser);
     });

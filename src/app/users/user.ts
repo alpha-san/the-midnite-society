@@ -100,54 +100,6 @@ export class UserModel {
     get details(): string {
         return this._userModel.details;
     }
-
-    // static createUser(firstName: string,
-    //     lastName: string,
-    //     email: string,
-    //     phone: string,
-    //     details: string) {
-    //     let p = new Promise((resolve, reject) => {
-    //         let repo = new UserRepository();
-
-    //         let user = <IUserModel>{
-    //             firstName: firstName,
-    //             lastName: lastName,
-    //             email: email,
-    //             phone: phone,
-    //             details: details
-    //         };
-
-    //         repo.create(user, (err, res) => {
-    //             if (err) {
-    //                 reject(err);
-    //             } else {
-    //                 resolve(res);
-    //             }
-    //         });
-    //     });
-
-    //     return p;
-    // }
-
-    // static findUser(email: string) {
-    //     let p = new Promise((resolve, reject) => {
-    //         let repo = new UserRepository();
-
-    //         repo.find({ email: email }).exec((err, res) => {
-    //             if (err) {
-    //                 reject(err);
-    //             } else {
-    //                 if (res.length) {
-    //                     resolve(res[0]);
-    //                 } else {
-    //                     resolve(null);
-    //                 }
-    //             }
-    //         });
-    //     });
-
-    //     return p;
-    // }
 }
 
 Object.seal(UserModel);
