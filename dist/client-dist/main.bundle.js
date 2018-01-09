@@ -1361,9 +1361,11 @@ var UserDetailsComponent = (function () {
     };
     UserDetailsComponent.prototype.createUser = function (user) {
         var _this = this;
-        this.userService.createUser(user).then(function (newUser) {
-            _this.createHandler(newUser);
-        });
+        if (this.validateUser(user)) {
+            this.userService.createUser(user).then(function (newUser) {
+                _this.createHandler(newUser);
+            });
+        }
     };
     UserDetailsComponent.prototype.updateUser = function (user) {
         var _this = this;
@@ -1376,6 +1378,16 @@ var UserDetailsComponent = (function () {
         this.userService.deleteUser(userId).then(function (deletedUserId) {
             _this.deleteHandler(deletedUserId);
         });
+    };
+    UserDetailsComponent.prototype.validateUser = function (user) {
+        // let doc = new mongoose.Document({}, UserSchema);
+        // doc.validate((error) => {
+        //   assert.ok(error);
+        //   assert.equal('Path `firstName` is required', error.errors['firstName'].message);
+        //   console.log('validating', error);
+        //   return false;
+        // });
+        return true;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),

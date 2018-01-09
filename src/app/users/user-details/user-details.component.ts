@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IUserModel } from '../user';
+import { IUserModel, UserSchema } from '../user';
 import { UserService } from '../user.service';
+import * as assert from 'assert';
 import * as mongoose from 'mongoose';
 
 @Component({
@@ -21,11 +22,11 @@ export class UserDetailsComponent implements OnInit {
   }
 
   createUser(user: IUserModel) {
-
-
-    this.userService.createUser(user).then((newUser: IUserModel) => {
-      this.createHandler(newUser);
-    });
+    if (this.validateUser(user)) {
+      this.userService.createUser(user).then((newUser: IUserModel) => {
+        this.createHandler(newUser);
+      });
+    }
   }
 
   updateUser(user: IUserModel) {
@@ -38,6 +39,19 @@ export class UserDetailsComponent implements OnInit {
     this.userService.deleteUser(userId).then((deletedUserId: String) => {
       this.deleteHandler(deletedUserId);
     });
+  }
+
+  validateUser(user: IUserModel) {
+    // let doc = new mongoose.Document({}, UserSchema);
+    // doc.validate((error) => {
+    //   assert.ok(error);
+    //   assert.equal('Path `firstName` is required', error.errors['firstName'].message);
+    //   console.log('validating', error);
+
+    //   return false;
+    // });
+
+    return true;
   }
 
 }
