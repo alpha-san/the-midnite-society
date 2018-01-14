@@ -30,7 +30,7 @@
         <li>
           <a href="#contact">Contact</a>
         </li>
-        <li class="dropdown">
+        <li *ngIf="auth.isAuthenticated()" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Menu
             <span class="caret"></span>
           </a>
@@ -52,34 +52,19 @@
             </li>
           </ul>
         </li>
+        <li>
+          <a href="#" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</a>
+        </li>
+        <li>
+          <a href="#" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log Out</a>
+        </li>
       </ul>
     </div>
     <!--/.nav-collapse -->
   </div>
 </nav>
 
-<!-- <nav>
-  <a routerLink="/artists" routerLinkActive="active">Artists</a>
-  <a routerLink="/albums" routerLinkActive="active">Albums</a>
-  <a routerLink="/tracks" routerLinkActive="active">Tracks</a>
-  <a routerLink="/blog" routerLinkActive="active">Blog</a>
-  <a routerLink="/store" routerLinkActive="active">Store</a>
-</nav> -->
-
-<div class="container">
-  <div>
-    <button class="btn btn-primary btn-margin" routerLink="/">
-      Home
-    </button>
-
-    <button class="btn btn-primary btn-margin" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
-      Log In
-    </button>
-
-    <button class="btn btn-primary btn-margin" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">
-      Log Out
-    </button>
-  </div>
+<div class="container" style="margin-top: 50px;">
   <h1>{{ title }}</h1>
   <router-outlet></router-outlet>
 </div>

@@ -1,5 +1,3 @@
-// import * as mongoose from '../../../lib/mongoose';
-// import * as mongoose from 'mongoose';
 import { environment } from '../../environments/environment';
 
 export let Schema = mongoose.Schema;

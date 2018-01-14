@@ -24,6 +24,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   createUser(user: IUserModel) {
+    console.log('createUser', user);
     if (this.validateUser(user)) {
       this.userService.createUser(user).then((newUser: IUserModel) => {
         this.createHandler(newUser);
@@ -52,6 +53,12 @@ export class UserDetailsComponent implements OnInit {
   }
 
   validateUser(user: IUserModel) {
+
+    var doc = new mongoose.Document({}, UserSchema);
+    doc.validate(error => {
+      // console.log('error', error);
+      return false;
+    });
 
     // let doc = new mongoose.Document({}, UserSchema);
     // doc.validate((error) => {

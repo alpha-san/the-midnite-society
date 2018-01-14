@@ -64,6 +64,11 @@ const appRoutes: Routes = [
     path: 'tracks',
     component: TrackListComponent,
     data: { title: 'Tracks'}
+  },
+  // artist page
+  {
+    path: ':artistname',
+    component: ArtistShowComponent
   }
 ];
 

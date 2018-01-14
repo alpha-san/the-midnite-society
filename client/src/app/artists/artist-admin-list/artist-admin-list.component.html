@@ -1,3 +1,22 @@
-<p>
-  artist-admin-list works!
-</p>
+<div class="row">
+  <div class="col-md-5">
+    <h2>Artists</h2>
+    <ul class="list-group">
+      <li class="list-group-item"
+        *ngFor="let artist of artists"
+        (click)="selectArtist(artist)"
+        [class.active]="artist === selectedArtist">
+        {{artist.artistName}}
+      </li>
+    </ul>
+    <button class="btn btn-warning" (click)="createNewArtist()">New</button>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <artist-details
+      [artist]="selectedArtist"
+      [createHandler]="addArtist"
+      [updateHandler]="updateArtist"
+      [deleteHandler]="deleteArtist">
+    </artist-details>
+  </div>
+</div>

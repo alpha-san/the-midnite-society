@@ -358,7 +358,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<!-- <nav>\n  <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n  <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n  <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n  <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n  <a routerLink=\"/store\" routerLinkActive=\"active\">Store</a>\n</nav> -->\n\n<div class=\"container\">\n  <div>\n    <button class=\"btn btn-primary btn-margin\" routerLink=\"/\">\n      Home\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">\n      Log In\n    </button>\n\n    <button class=\"btn btn-primary btn-margin\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">\n      Log Out\n    </button>\n  </div>\n  <h1>{{ title }}</h1>\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li *ngIf=\"auth.isAuthenticated()\" class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">Log In</a>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">Log Out</a>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<div class=\"container\" style=\"margin-top: 50px;\">\n  <h1>{{ title }}</h1>\n  <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -502,6 +502,11 @@ var appRoutes = [
         path: 'tracks',
         component: __WEBPACK_IMPORTED_MODULE_11__tracks_track_list_track_list_component__["a" /* TrackListComponent */],
         data: { title: 'Tracks' }
+    },
+    // artist page
+    {
+        path: ':artistname',
+        component: __WEBPACK_IMPORTED_MODULE_19__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */]
     }
 ];
 var AppModule = (function () {
@@ -528,7 +533,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* RouterModule */].forRoot(appRoutes, { enableTracing: true }),
+                __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(appRoutes, { enableTracing: true }),
                 __WEBPACK_IMPORTED_MODULE_17_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClientModule */]
             ],
@@ -564,7 +569,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  artist-admin-list works!\n</p>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <h2>Artists</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\"\n        *ngFor=\"let artist of artists\"\n        (click)=\"selectArtist(artist)\"\n        [class.active]=\"artist === selectedArtist\">\n        {{artist.artistName}}\n      </li>\n    </ul>\n    <button class=\"btn btn-warning\" (click)=\"createNewArtist()\">New</button>\n  </div>\n  <div class=\"col-md-5 col-md-offset-2\">\n    <artist-details\n      [artist]=\"selectedArtist\"\n      [createHandler]=\"addArtist\"\n      [updateHandler]=\"updateArtist\"\n      [deleteHandler]=\"deleteArtist\">\n    </artist-details>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -574,6 +579,7 @@ module.exports = "<p>\n  artist-admin-list works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistAdminListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__artist_service__ = __webpack_require__("../../../../../src/app/artists/artist.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -584,10 +590,72 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var ArtistAdminListComponent = (function () {
-    function ArtistAdminListComponent() {
+    function ArtistAdminListComponent(artistService) {
+        var _this = this;
+        this.artistService = artistService;
+        this.getIndexOfArtist = function (artistId) {
+            return _this.artists.findIndex(function (artist) {
+                return artist._id === artistId;
+            });
+        };
+        this.deleteArtist = function (artistId) {
+            var idx = _this.getIndexOfArtist(artistId);
+            if (idx !== -1) {
+                _this.artists.splice(idx, 1);
+                _this.selectArtist(null);
+            }
+            return _this.artists;
+        };
+        this.addArtist = function (artist) {
+            _this.artists.push(artist);
+            _this.selectArtist(artist);
+            return _this.artists;
+        };
+        this.updateArtist = function (artist) {
+            var idx = _this.getIndexOfArtist(artist._id);
+            if (idx !== -1) {
+                _this.artists[idx] = artist;
+                _this.selectArtist(artist);
+            }
+            return _this.artists;
+        };
     }
     ArtistAdminListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.artistService
+            .getArtists()
+            .then(function (artists) {
+            if (artists !== undefined) {
+                _this.artists = artists.map(function (artist) {
+                    return artist;
+                });
+            }
+        });
+    };
+    ArtistAdminListComponent.prototype.selectArtist = function (artist) {
+        this.selectedArtist = artist;
+    };
+    ArtistAdminListComponent.prototype.createNewArtist = function () {
+        var artist = {
+            _id: '',
+            firstName: '',
+            lastName: '',
+            details: '',
+            email: '',
+            phone: '',
+            artistName: '',
+            soundcloudUrl: '',
+            twitterUrl: '',
+            facebookUrl: '',
+            instagramUrl: '',
+            snapchatUrl: '',
+            tagLine: '',
+            biography: '',
+            isAdmin: false
+        };
+        this.selectArtist(artist);
     };
     ArtistAdminListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -595,7 +663,7 @@ var ArtistAdminListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__artist_service__["a" /* ArtistService */]])
     ], ArtistAdminListComponent);
     return ArtistAdminListComponent;
 }());
@@ -849,7 +917,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/artists/artist-show/artist-show.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  artist-show works!\n</p>\n"
+module.exports = "<!-- _id?: string;\nfirstName: string;\nlastName: string;\ndetails: string;\nemail: string;\nphone: string;\nartistName: string;\nsoundcloudUrl: string;\ntwitterUrl: string;\nfacebookUrl: string;\ninstagramUrl: string;\nsnapchatUrl: string;\ntagLine: string;\nbiography: string;\nisAdmin: boolean; -->\n<div *ngIf=\"loaded && artist$ !== undefined\">\n  <div>\n    <h1>{{artist$.artistName}}</h1>\n    <p>{{artist$.tagLine}}</p>\n  </div>\n  <div>\n    <h3>ABOUT THE ARTIST</h3>\n    <p>{{artist$.biography}}</p>\n\n    <p>On this social media account is where I do this.</p> \n  </div>\n  <div>\n    <h1>DISCOGRAPHY</h1>\n  </div>\n  <p>\n    Artist is {{ artist$.artistName }}\n  </p>\n</div>\n<div *ngIf=\"loaded && artist$ === undefined\">\n  <p>The page you are looking for does not exist</p>\n</div>\n"
 
 /***/ }),
 
@@ -859,6 +927,9 @@ module.exports = "<p>\n  artist-show works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArtistShowComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_switchMap__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/switchMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__artist_service__ = __webpack_require__("../../../../../src/app/artists/artist.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -869,10 +940,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var ArtistShowComponent = (function () {
-    function ArtistShowComponent() {
+    function ArtistShowComponent(route, router, artistService) {
+        this.route = route;
+        this.router = router;
+        this.artistService = artistService;
+        this.loaded = false;
     }
     ArtistShowComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.paramMap.subscribe(function (params) {
+            _this.artistService
+                .getArtists()
+                .then(function (artists) {
+                if (artists !== undefined) {
+                    _this.artist$ = artists.find(function (artist) { return artist.artistName === params.get('artistname'); });
+                }
+            });
+            _this.loaded = true;
+        });
     };
     ArtistShowComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -880,7 +969,9 @@ var ArtistShowComponent = (function () {
             template: __webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.html"),
             styles: [__webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3__artist_service__["a" /* ArtistService */]])
     ], ArtistShowComponent);
     return ArtistShowComponent;
 }());
@@ -1058,7 +1149,7 @@ var AuthService = (function () {
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
     ], AuthService);
     return AuthService;
 }());
@@ -1098,6 +1189,7 @@ module.exports = "<div class=\"loading\">\n  <img src=\"assets/loading.svg\" alt
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CallBackComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1108,10 +1200,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CallBackComponent = (function () {
-    function CallBackComponent() {
+    function CallBackComponent(router) {
+        this.router = router;
     }
     CallBackComponent.prototype.ngOnInit = function () {
+        this.router.navigateByUrl('/');
     };
     CallBackComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1119,7 +1214,7 @@ var CallBackComponent = (function () {
             template: __webpack_require__("../../../../../src/app/call-back/call-back.component.html"),
             styles: [__webpack_require__("../../../../../src/app/call-back/call-back.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
     ], CallBackComponent);
     return CallBackComponent;
 }());
@@ -1332,7 +1427,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/users/user-details/user-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\" class=\"row\">\n  <div class=\"col-md-12\">\n    <h2 *ngIf=\"user._id\">User Details</h2>\n    <h2 *ngIf=\"!user._id\">New User</h2>\n  </div>\n</div>\n<div *ngIf=\"user\" class=\"row\">\n  <form class=\"col-md-12\">\n    <div class=\"form-group\">\n      <label for=\"user-firstname\">First Name</label>\n      <input class=\"form-control\" name=\"user-firstname\" [(ngModel)]=\"user.firstName\" placeholder=\"First Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-lastname\">Last Name</label>\n      <input class=\"form-control\" name=\"user-lastname\" [(ngModel)]=\"user.lastName\" placeholder=\"Last Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-details\">Details</label>\n      <input class=\"form-control\" name=\"user-details\" [(ngModel)]=\"user.details\" placeholder=\"Details\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-email\">Email</label>\n      <input class=\"form-control\" name=\"user-email\" [(ngModel)]=\"user.email\" placeholder=\"meh@meh.com\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-instagram-url\">Instagram URL</label>\n      <input class=\"form-control\" name=\"user-instagram-url\" [(ngModel)]=\"user.instagramUrl\" placeholder=\"instagram.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-phone-number\">Phone Number</label>\n      <input class=\"form-control\" name=\"user-phone-number\" [(ngModel)]=\"user.phone\" placeholder=\"(800)888-8888\"/>\n    </div>\n    <button class=\"btn btn-primary\" *ngIf=\"!user._id\" (click)=\"createUser(user)\">Create</button>\n    <button class=\"btn btn-info\" *ngIf=\"user._id\" (click)=\"updateUser(user)\">Update</button>\n    <button class=\"btn btn-danger\" *ngIf=\"user._id\" (click)=\"deleteUser(user._id)\">Delete</button>\n  </form>\n</div>"
+module.exports = "<div *ngIf=\"user\" class=\"row\">\n  <div class=\"col-md-12\">\n    <h2 *ngIf=\"user._id\">User Details</h2>\n    <h2 *ngIf=\"!user._id\">New User</h2>\n  </div>\n</div>\n<div *ngIf=\"user\" class=\"row\">\n  <form class=\"col-md-12\">\n    <div class=\"form-group\">\n      <label for=\"user-firstname\">First Name</label>\n      <input class=\"form-control\" name=\"user-firstname\" [(ngModel)]=\"user.firstName\" placeholder=\"First Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-lastname\">Last Name</label>\n      <input class=\"form-control\" name=\"user-lastname\" [(ngModel)]=\"user.lastName\" placeholder=\"Last Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-details\">Details</label>\n      <input class=\"form-control\" name=\"user-details\" [(ngModel)]=\"user.details\" placeholder=\"Details\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-email\">Email</label>\n      <input class=\"form-control\" name=\"user-email\" [(ngModel)]=\"user.email\" placeholder=\"meh@meh.com\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"user-phone-number\">Phone Number</label>\n      <input class=\"form-control\" name=\"user-phone-number\" [(ngModel)]=\"user.phone\" placeholder=\"(800)888-8888\"/>\n    </div>\n    <button class=\"btn btn-primary\" *ngIf=\"!user._id\" (click)=\"createUser(user)\">Create</button>\n    <button class=\"btn btn-info\" *ngIf=\"user._id\" (click)=\"updateUser(user)\">Update</button>\n    <button class=\"btn btn-danger\" *ngIf=\"user._id\" (click)=\"deleteUser(user._id)\">Delete</button>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -1367,6 +1462,7 @@ var UserDetailsComponent = (function () {
     };
     UserDetailsComponent.prototype.createUser = function (user) {
         var _this = this;
+        console.log('createUser', user);
         if (this.validateUser(user)) {
             this.userService.createUser(user).then(function (newUser) {
                 _this.createHandler(newUser);
@@ -1393,6 +1489,11 @@ var UserDetailsComponent = (function () {
         });
     };
     UserDetailsComponent.prototype.validateUser = function (user) {
+        var doc = new mongoose.Document({}, __WEBPACK_IMPORTED_MODULE_1__user__["b" /* UserSchema */]);
+        doc.validate(function (error) {
+            // console.log('error', error);
+            return false;
+        });
         // let doc = new mongoose.Document({}, UserSchema);
         // doc.validate((error) => {
         //   assert.ok(error);
@@ -1645,7 +1746,7 @@ var UserService = (function () {
 "use strict";
 /* unused harmony export Schema */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestMongoose; });
-/* unused harmony export UserSchema */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UserSchema; });
 /* unused harmony export UserModel */
 var Schema = mongoose.Schema;
 var schema = new Schema({
