@@ -19,6 +19,7 @@
   "homepage": "https://github.com/alpha-san/the-midnite-society#readme",
   "dependencies": {
     "@types/node": "^9.3.0",
+    "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "mongoose": "^4.10.8"

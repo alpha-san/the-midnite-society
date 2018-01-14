@@ -24,11 +24,9 @@
     "@angular/router": "^5.0.0",
     "angular-2-dropdown-multiselect": "^1.6.2",
     "auth0-js": "^9.0.2",
-    "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
     "dotenv": "^4.0.0",
     "exjs": "^1.2.1",
-    "express": "^4.16.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
