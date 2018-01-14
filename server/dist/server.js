@@ -19,7 +19,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Create link to Angular build directory
 // let distDir = path.join(__dirname + "/client-dist");
 var distDir = path.join(__dirname + "../../../client/dist");
-console.log('distDir= ', distDir);
 app.use(express.static(distDir));
 // api routes
 app.use('/api/users', users);
@@ -33,7 +32,6 @@ app.get('*', function (req, res) {
     // let rootDir = __dirname + '/client-dist';
     var rootIndexFile = '../../client/dist/index.html';
     var rootDir = path.join(__dirname + '../../../client/dist');
-    console.log('rootDir=', rootDir);
     res.sendFile('index.html', { root: rootDir });
 });
 mongoose.connect(process.env.MONGODB_URI);

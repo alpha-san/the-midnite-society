@@ -21,7 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Create link to Angular build directory
 // let distDir = path.join(__dirname + "/client-dist");
 let distDir = path.join(__dirname + "../../../client/dist");
-console.log('distDir= ', distDir);
 app.use(express.static(distDir));
 
 // api routes
@@ -37,7 +36,6 @@ app.get('*', (req, res) => {
   // let rootDir = __dirname + '/client-dist';
   let rootIndexFile = '../../client/dist/index.html';
   let rootDir = path.join(__dirname + '../../../client/dist');
-  console.log('rootDir=', rootDir);
   res.sendFile('index.html', { root: rootDir });
 });
 
