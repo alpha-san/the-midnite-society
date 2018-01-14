@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-5">
+    <h2>Albums</h2>
+    <ul class="list-group">
+      <li class="list-group-item"
+        *ngFor="let album of albums"
+        (click)="selectAlbum(album)"
+        [class.active]="album === selectedAlbum">
+        {{album.name}}
+      </li>
+    </ul>
+    <button class="btn btn-warning" (click)="createNewAlbum()">New</button>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <album-details
+      [album]="selectedAlbum"
+      [createHandler]="addAlbum"
+      [updateHandler]="updateAlbum"
+      [deleteHandler]="deleteAlbum">
+    </album-details>
+  </div>
+</div>
