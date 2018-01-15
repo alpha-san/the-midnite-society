@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {margin:0;padding:0;height:100%;}
+
+.router-outlet-div {
+    height: 100%;
+    margin-top: 51px;
+}
+
+.router-outlet-div .row {
+    padding: 2%;
+}

@@ -45,6 +45,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB server connection error'));
 db.once('open', function() {
   app.db = db;
+  app.mongoose = mongoose;
   console.log('Database connection ready')
 
   // Initialize app

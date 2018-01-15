@@ -17,6 +17,9 @@ router.get("/", function (req, res) {
 
 router.post("/", function (req, res) {
   var newContact = req.body;
+  newContact._id = req.app.mongoose.Types.ObjectId();
+  newContact.artistUrl = newContact.artistName.toLowerCase().replace(/ /g,'');
+  console.log('before post', newContact);
 
   // validation error checking here
   //   if (!req.body.name) {
@@ -24,12 +27,15 @@ router.post("/", function (req, res) {
   //   }
 
   req.app.db.collection(ARTISTS_COLLECTION).insertOne(newContact, function (err, doc) {
+    console.log('newArtist', newContact);
     if (err) {
       handleError(res, err.message, "Failed to create new artist.", 500);
     } else {
+      console.log('success');
       res.status(201).json(doc.ops[0]);
     }
   });
+  // mongoose.Types.ObjectId();
 });
 
 router.get("/:id", function (req, res) {
@@ -40,7 +46,7 @@ router.put("/:id", function (req, res) {
   console.log('server.js:put', updatedArtist);
 
   req.app.db.collection(ARTISTS_COLLECTION).updateOne(
-    { "_id": new req.app.mongodb.ObjectId(updatedArtist._id) },
+    { "_id": new req.app.mongoose.Types.ObjectId(updatedArtist._id) },
     {
       $set:
         {
@@ -60,7 +66,7 @@ router.put("/:id", function (req, res) {
 });
 
 router.delete("/:id", function (req, res) {
-  req.app.db.collection(ARTISTS_COLLECTION).remove({ _id: new req.app.mongodb.ObjectId(req.params.id) }, function (err, doc) {
+  req.app.db.collection(ARTISTS_COLLECTION).remove({ _id: new req.app.mongoose.Types.ObjectId(req.params.id) }, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to delete artist.", 500);
     } else {

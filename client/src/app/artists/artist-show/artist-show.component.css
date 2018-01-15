@@ -1,0 +1,106 @@
+body, html {
+    height: 100%;
+}
+
+.artist-main-div {
+    background-image: url('/assets/1.png');
+    height: 600px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.artist-main-div h1.artist-name {
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+    font-size: 115px;
+}
+
+.artist-main-div p.artist-tagline {
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+    font-size: 24px;
+}
+
+.arist-social-div {
+    background-image: url('/assets/2.png');
+    height: 600px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-top: -1%;
+}
+
+.artist-social-div-info {
+    position: absolute;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    color: white;
+}
+
+.artist-about-label {
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.artist-biography {
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17pt;
+}
+
+.artist-social-tagline {
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+.artist-discography-div {
+    height: 600px;
+    background-color: lightblue;
+    color: white;
+    text-align: center;
+    margin-top: -1.75%;
+    padding: 5%;
+}
+
+.artist-social-media-div {
+    margin-top: 70px;
+    margin-bottom: 100px;
+}
+
+.artist-social-media-link {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 35px;
+}
+
+.artist-social-media-link img {
+    width: 35px;
+}
+
+.page-not-found {
+    height: 100%;
+    background: black;
+    color: white;
+    padding: 5%;
+    position: relative;
+    text-align: center;
+}
+
+.page-not-found img {
+    width: 100%;
+}
+
+.page-not-found p {
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+}

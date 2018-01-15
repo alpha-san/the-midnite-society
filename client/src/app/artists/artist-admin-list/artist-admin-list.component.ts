@@ -36,6 +36,23 @@ export class ArtistAdminListComponent implements OnInit {
   selectArtist(artist: Artist | null) {
     this.selectedArtist = artist;
   }
+  // _id?: string;
+  // firstName: string;
+  // lastName: string;
+  // details: string;
+  // email: string;
+  // phone: string;
+  // artistUrl: string;
+  // artistName: string;
+  // soundcloudUrl: string;
+  // twitterUrl: string;
+  // facebookUrl: string;
+  // instagramUrl: string;
+  // youtubeUrl: string;
+  // snapchatUrl: string;
+  // tagLine: string;
+  // biography: string;
+  // isAdmin: boolean;
 
   createNewArtist() {
     var artist: Artist = {
@@ -45,12 +62,14 @@ export class ArtistAdminListComponent implements OnInit {
       details: '',
       email: '',
       phone: '',
+      artistUrl: '',
       artistName: '',
       soundcloudUrl: '',
       twitterUrl: '',
       facebookUrl: '',
       instagramUrl: '',
       snapchatUrl: '',
+      youtubeUrl: '',
       tagLine: '',
       biography: '',
       isAdmin: false

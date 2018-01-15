@@ -40,17 +40,20 @@ export class ArtistListComponent implements OnInit {
 
   createNewArtist() {
     var artist: Artist = {
+      _id: '',
       firstName: '',
       lastName: '',
       details: '',
       email: '',
       phone: '',
+      artistUrl: '',
       artistName: '',
       soundcloudUrl: '',
       twitterUrl: '',
       facebookUrl: '',
       instagramUrl: '',
       snapchatUrl: '',
+      youtubeUrl: '',
       tagLine: '',
       biography: '',
       isAdmin: false

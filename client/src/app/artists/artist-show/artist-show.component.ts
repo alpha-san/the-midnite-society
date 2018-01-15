@@ -13,6 +13,7 @@ import { ArtistService } from '../artist.service';
 export class ArtistShowComponent implements OnInit {
   artist$: Artist;
   loaded: boolean;
+  artistExists: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +21,7 @@ export class ArtistShowComponent implements OnInit {
     private artistService: ArtistService
   ) { 
     this.loaded = false;
+    this.artistExists = false;
   }
 
   ngOnInit() {
@@ -28,10 +30,11 @@ export class ArtistShowComponent implements OnInit {
         .getArtists()
         .then((artists: Artist[]) => {
           if (artists !== undefined) {
-            this.artist$ = artists.find(artist => artist.artistName === params.get('artistname'))
-          }
+            this.artist$ = artists.find(artist => artist.artistUrl === params.get('artistname'))
+          } 
+          this.artistExists = this.artist$ !== undefined;
+          this.loaded = true;
         });
-        this.loaded = true;
     });
   }
 

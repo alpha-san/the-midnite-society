@@ -16,6 +16,5 @@ export class AppComponent {
   constructor(private authService: AuthService) { 
     this.auth = authService;
     this.auth.handleAuthentication();
-    console.log('we out here', mongoose);
   }
 }

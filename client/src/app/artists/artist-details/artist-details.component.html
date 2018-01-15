@@ -20,7 +20,11 @@
     </div>
     <div class="form-group">
       <label for="artist-details">Details</label>
-      <input class="form-control" name="artist-details" [(ngModel)]="artist.details" placeholder="Details"/>
+      <input class="form-control" name="artist-details" [(ngModel)]="artist.biography" placeholder="Details"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-tagLine">Tagline</label>
+      <input class="form-control" name="artist-tagLine" [(ngModel)]="artist.tagLine" placeholder="Marketer - Entrepreneur - Rapper"/>
     </div>
     <div class="form-group">
       <label for="artist-email">Email</label>
@@ -45,6 +49,10 @@
     <div class="form-group">
       <label for="artist-snapchat-url">Snapchat ID</label>
       <input class="form-control" name="artist-snapchat-url" [(ngModel)]="artist.snapchatUrl" placeholder="snapchat.com/"/>
+    </div>
+    <div class="form-group">
+      <label for="artist-youtube-url">Youtube URL</label>
+      <input class="form-control" name="artist-youtube-url" [(ngModel)]="artist.youtubeUrl" placeholder="youtube.com/"/>
     </div>
     <div class="form-group">
       <label for="artist-phone-number">Phone Number</label>

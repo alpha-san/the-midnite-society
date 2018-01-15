@@ -1,36 +1,58 @@
-<!-- _id?: string;
-firstName: string;
-lastName: string;
-details: string;
-email: string;
-phone: string;
-artistName: string;
-soundcloudUrl: string;
-twitterUrl: string;
-facebookUrl: string;
-instagramUrl: string;
-snapchatUrl: string;
-tagLine: string;
-biography: string;
-isAdmin: boolean; -->
-<div *ngIf="loaded && artist$ !== undefined">
-  <div>
-    <h1>{{artist$.artistName}}</h1>
-    <p>{{artist$.tagLine}}</p>
-  </div>
-  <div>
-    <h3>ABOUT THE ARTIST</h3>
-    <p>{{artist$.biography}}</p>
-
-    <p>On this social media account is where I do this.</p> 
-  </div>
-  <div>
-    <h1>DISCOGRAPHY</h1>
-  </div>
-  <p>
-    Artist is {{ artist$.artistName }}
-  </p>
+<div *ngIf="!loaded && artist$ === undefined">
+  <img src="/assets/loading.svg" />
 </div>
-<div *ngIf="loaded && artist$ === undefined">
+
+<div *ngIf="loaded && artist$ !== undefined">
+  <div class="artist-main-div">
+    <h1 class="artist-name">{{artist$.artistName}}</h1>
+    <p class="artist-tagline">{{artist$.tagLine || "I am the one who knocks"}}</p>
+  </div>
+  <div class="arist-social-div">
+    <div class="artist-social-div-info">
+      <h3 class="artist-about-label">ABOUT THE ARTIST</h3>
+      <p class="artist-biography">{{artist$.biography || "Lorem Khaled Ipsum is a major key to success. Put it this way, it took me twenty five years
+        to get these plants, twenty five years of blood sweat and tears, and I’m never giving up, I’m just getting started.
+        You should never complain, complaining is a weak emotion, you got life, we breathing, we blessed. Let’s see what
+        Chef Dee got that they don’t want us to eat. Surround yourself with angels. Cloth talk. Bless up. The weather is
+        amazing, walk with me through the pathway of more success. Take this journey with me, Lion! You see the hedges, how
+        I got it shaped up? It’s important to shape up your hedges, it’s like getting a haircut, stay fresh."}}</p>
+
+        <div class="artist-social-media-div">
+          <div class="artist-social-media-link">
+            <a href="{{artist$.facebookUrl}}"><img src="/assets/facebook.png" /></a>
+          </div>
+
+          <div class="artist-social-media-link">
+            <a href="{{artist$.twitterUrl}}"><img src="/assets/twitter.png" /></a>
+          </div>
+
+          <div class="artist-social-media-link">
+            <a href="{{artist$.snapchatUrl}}"><img src="/assets/snapchat.png" /></a>
+          </div>
+
+          <div class="artist-social-media-link">
+            <a href="{{artist$.instagramUrl}}"><img src="/assets/instagram.png" /></a>
+          </div>
+
+          <div class="artist-social-media-link">
+            <a href="{{artist$.soundcloudUrl}}"><img src="/assets/soundcloud.png" /></a>
+          </div>
+
+          <div class="artist-social-media-link">
+            <a href="{{artist$.youtubeUrl}}"><img src="/assets/youtube.png" /></a>
+          </div>
+        </div>
+
+      <p class="artist-social-tagline">On this social media account is where I do this.</p>
+    </div>
+  </div>
+  <div class="artist-discography-div">
+    <h1>DISCOGRAPHY</h1>
+    <img class="img-responsive" style="width: 42%; margin: 0 auto;" src="/assets/albums_preview.png" />
+  </div>
+</div>
+
+<div class="page-not-found" *ngIf="loaded && !artistExists">
   <p>The page you are looking for does not exist</p>
+  <img src="/assets/404.gif" />
 </div>

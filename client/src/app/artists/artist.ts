@@ -5,11 +5,13 @@ export class Artist {
     details: string;
     email: string;
     phone: string;
+    artistUrl: string;
     artistName: string;
     soundcloudUrl: string;
     twitterUrl: string;
     facebookUrl: string;
     instagramUrl: string;
+    youtubeUrl: string;
     snapchatUrl: string;
     tagLine: string;
     biography: string;

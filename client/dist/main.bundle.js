@@ -358,7 +358,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li *ngIf=\"auth.isAuthenticated()\" class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">Log In</a>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">Log Out</a>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<div class=\"container\" style=\"margin-top: 50px;\">\n  <h1>{{ title }}</h1>\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li *ngIf=\"auth.isAuthenticated()\" class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">Log In</a>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">Log Out</a>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<div class=\"router-outlet-div\">\n  <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -388,7 +388,6 @@ var AppComponent = (function () {
         this.title = 'The Midnite Society';
         this.auth = authService;
         this.auth.handleAuthentication();
-        console.log('we out here', mongoose);
     }
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -569,7 +568,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <h2>Artists</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\"\n        *ngFor=\"let artist of artists\"\n        (click)=\"selectArtist(artist)\"\n        [class.active]=\"artist === selectedArtist\">\n        {{artist.artistName}}\n      </li>\n    </ul>\n    <button class=\"btn btn-warning\" (click)=\"createNewArtist()\">New</button>\n  </div>\n  <div class=\"col-md-5 col-md-offset-2\">\n    <artist-details\n      [artist]=\"selectedArtist\"\n      [createHandler]=\"addArtist\"\n      [updateHandler]=\"updateArtist\"\n      [deleteHandler]=\"deleteArtist\">\n    </artist-details>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-5\">\n      <h2>Artists</h2>\n      <ul class=\"list-group\">\n        <li class=\"list-group-item\" *ngFor=\"let artist of artists\" (click)=\"selectArtist(artist)\" [class.active]=\"artist === selectedArtist\">\n          {{artist.artistName}}\n        </li>\n      </ul>\n      <button class=\"btn btn-warning\" (click)=\"createNewArtist()\">New</button>\n    </div>\n    <div class=\"col-md-5 col-md-offset-2\">\n      <artist-details [artist]=\"selectedArtist\" [createHandler]=\"addArtist\" [updateHandler]=\"updateArtist\" [deleteHandler]=\"deleteArtist\">\n      </artist-details>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -637,6 +636,23 @@ var ArtistAdminListComponent = (function () {
     ArtistAdminListComponent.prototype.selectArtist = function (artist) {
         this.selectedArtist = artist;
     };
+    // _id?: string;
+    // firstName: string;
+    // lastName: string;
+    // details: string;
+    // email: string;
+    // phone: string;
+    // artistUrl: string;
+    // artistName: string;
+    // soundcloudUrl: string;
+    // twitterUrl: string;
+    // facebookUrl: string;
+    // instagramUrl: string;
+    // youtubeUrl: string;
+    // snapchatUrl: string;
+    // tagLine: string;
+    // biography: string;
+    // isAdmin: boolean;
     ArtistAdminListComponent.prototype.createNewArtist = function () {
         var artist = {
             _id: '',
@@ -645,12 +661,14 @@ var ArtistAdminListComponent = (function () {
             details: '',
             email: '',
             phone: '',
+            artistUrl: '',
             artistName: '',
             soundcloudUrl: '',
             twitterUrl: '',
             facebookUrl: '',
             instagramUrl: '',
             snapchatUrl: '',
+            youtubeUrl: '',
             tagLine: '',
             biography: '',
             isAdmin: false
@@ -693,7 +711,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/artists/artist-details/artist-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"artist\" class=\"row\">\n  <div class=\"col-md-12\">\n    <h2 *ngIf=\"artist._id\">Artist Details</h2>\n    <h2 *ngIf=\"!artist._id\">New Artist</h2>\n  </div>\n</div>\n<div *ngIf=\"artist\" class=\"row\">\n  <form class=\"col-md-12\">\n    <div class=\"form-group\">\n      <label for=\"artist-firstname\">First Name</label>\n      <input class=\"form-control\" name=\"artist-firstname\" [(ngModel)]=\"artist.firstName\" placeholder=\"First Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-lastname\">Last Name</label>\n      <input class=\"form-control\" name=\"artist-lastname\" [(ngModel)]=\"artist.lastName\" placeholder=\"Last Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-artistname\">Artist Name</label>\n      <input class=\"form-control\" name=\"artist-artistname\" [(ngModel)]=\"artist.artistName\" placeholder=\"diplo\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-details\">Details</label>\n      <input class=\"form-control\" name=\"artist-details\" [(ngModel)]=\"artist.details\" placeholder=\"Details\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-email\">Email</label>\n      <input class=\"form-control\" name=\"artist-email\" [(ngModel)]=\"artist.email\" placeholder=\"meh@meh.com\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-soundcloud-url\">Soundcloud URL</label>\n      <input class=\"form-control\" name=\"artist-soundcloud-url\" [(ngModel)]=\"artist.soundcloudUrl\" placeholder=\"soundcloud.com/dopeartistzcollective\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-twitter-url\">Twitter URL</label>\n      <input class=\"form-control\" name=\"artist-twitter-url\" [(ngModel)]=\"artist.twitterUrl\" placeholder=\"twitter.com/the_donald\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-facebook-url\">Facebook URL</label>\n      <input class=\"form-control\" name=\"artist-facebook-url\" [(ngModel)]=\"artist.facebookUrl\" placeholder=\"facebook.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-instagram-url\">Instagram URL</label>\n      <input class=\"form-control\" name=\"artist-instagram-url\" [(ngModel)]=\"artist.instagramUrl\" placeholder=\"instagram.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-snapchat-url\">Snapchat ID</label>\n      <input class=\"form-control\" name=\"artist-snapchat-url\" [(ngModel)]=\"artist.snapchatUrl\" placeholder=\"snapchat.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-phone-number\">Phone Number</label>\n      <input class=\"form-control\" name=\"artist-phone-number\" [(ngModel)]=\"artist.phone\" placeholder=\"(800)888-8888\"/>\n    </div>\n    <button class=\"btn btn-primary\" *ngIf=\"!artist._id\" (click)=\"createArtist(artist)\">Create</button>\n    <button class=\"btn btn-info\" *ngIf=\"artist._id\" (click)=\"updateArtist(artist)\">Update</button>\n    <button class=\"btn btn-danger\" *ngIf=\"artist._id\" (click)=\"deleteArtist(artist._id)\">Delete</button>\n  </form>\n</div>"
+module.exports = "<div *ngIf=\"artist\" class=\"row\">\n  <div class=\"col-md-12\">\n    <h2 *ngIf=\"artist._id\">Artist Details</h2>\n    <h2 *ngIf=\"!artist._id\">New Artist</h2>\n  </div>\n</div>\n<div *ngIf=\"artist\" class=\"row\">\n  <form class=\"col-md-12\">\n    <div class=\"form-group\">\n      <label for=\"artist-firstname\">First Name</label>\n      <input class=\"form-control\" name=\"artist-firstname\" [(ngModel)]=\"artist.firstName\" placeholder=\"First Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-lastname\">Last Name</label>\n      <input class=\"form-control\" name=\"artist-lastname\" [(ngModel)]=\"artist.lastName\" placeholder=\"Last Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-artistname\">Artist Name</label>\n      <input class=\"form-control\" name=\"artist-artistname\" [(ngModel)]=\"artist.artistName\" placeholder=\"diplo\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-details\">Details</label>\n      <input class=\"form-control\" name=\"artist-details\" [(ngModel)]=\"artist.biography\" placeholder=\"Details\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-tagLine\">Tagline</label>\n      <input class=\"form-control\" name=\"artist-tagLine\" [(ngModel)]=\"artist.tagLine\" placeholder=\"Marketer - Entrepreneur - Rapper\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-email\">Email</label>\n      <input class=\"form-control\" name=\"artist-email\" [(ngModel)]=\"artist.email\" placeholder=\"meh@meh.com\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-soundcloud-url\">Soundcloud URL</label>\n      <input class=\"form-control\" name=\"artist-soundcloud-url\" [(ngModel)]=\"artist.soundcloudUrl\" placeholder=\"soundcloud.com/dopeartistzcollective\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-twitter-url\">Twitter URL</label>\n      <input class=\"form-control\" name=\"artist-twitter-url\" [(ngModel)]=\"artist.twitterUrl\" placeholder=\"twitter.com/the_donald\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-facebook-url\">Facebook URL</label>\n      <input class=\"form-control\" name=\"artist-facebook-url\" [(ngModel)]=\"artist.facebookUrl\" placeholder=\"facebook.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-instagram-url\">Instagram URL</label>\n      <input class=\"form-control\" name=\"artist-instagram-url\" [(ngModel)]=\"artist.instagramUrl\" placeholder=\"instagram.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-snapchat-url\">Snapchat ID</label>\n      <input class=\"form-control\" name=\"artist-snapchat-url\" [(ngModel)]=\"artist.snapchatUrl\" placeholder=\"snapchat.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-youtube-url\">Youtube URL</label>\n      <input class=\"form-control\" name=\"artist-youtube-url\" [(ngModel)]=\"artist.youtubeUrl\" placeholder=\"youtube.com/\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"artist-phone-number\">Phone Number</label>\n      <input class=\"form-control\" name=\"artist-phone-number\" [(ngModel)]=\"artist.phone\" placeholder=\"(800)888-8888\"/>\n    </div>\n    <button class=\"btn btn-primary\" *ngIf=\"!artist._id\" (click)=\"createArtist(artist)\">Create</button>\n    <button class=\"btn btn-info\" *ngIf=\"artist._id\" (click)=\"updateArtist(artist)\">Update</button>\n    <button class=\"btn btn-danger\" *ngIf=\"artist._id\" (click)=\"deleteArtist(artist._id)\">Delete</button>\n  </form>\n</div>"
 
 /***/ }),
 
@@ -863,17 +881,20 @@ var ArtistListComponent = (function () {
     };
     ArtistListComponent.prototype.createNewArtist = function () {
         var artist = {
+            _id: '',
             firstName: '',
             lastName: '',
             details: '',
             email: '',
             phone: '',
+            artistUrl: '',
             artistName: '',
             soundcloudUrl: '',
             twitterUrl: '',
             facebookUrl: '',
             instagramUrl: '',
             snapchatUrl: '',
+            youtubeUrl: '',
             tagLine: '',
             biography: '',
             isAdmin: false
@@ -904,7 +925,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "body, html {\n    height: 100%;\n}\n\n.artist-main-div {\n    background-image: url('/assets/1.png');\n    height: 600px;\n    background-attachment: fixed;\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    position: relative;\n}\n\n.artist-main-div h1.artist-name {\n    position: absolute;\n    bottom: 20%;\n    left: 5%;\n    font-size: 115px;\n}\n\n.artist-main-div p.artist-tagline {\n    position: absolute;\n    bottom: 15%;\n    left: 5%;\n    font-size: 24px;\n}\n\n.arist-social-div {\n    background-image: url('/assets/2.png');\n    height: 600px;\n    background-attachment: fixed;\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n    position: relative;\n    margin-top: -1%;\n}\n\n.artist-social-div-info {\n    position: absolute;\n    margin: 0 auto;\n    text-align: center;\n    width: 100%;\n    color: white;\n}\n\n.artist-about-label {\n    font-size: 45px;\n    font-weight: bold;\n}\n\n.artist-biography {\n    padding-left: 10%;\n    padding-right: 10%;\n    font-size: 17pt;\n}\n\n.artist-social-tagline {\n    font-weight: bold;\n    font-size: 15pt;\n}\n\n.artist-discography-div {\n    height: 600px;\n    background-color: lightblue;\n    color: white;\n    text-align: center;\n    margin-top: -1.75%;\n    padding: 5%;\n}\n\n.artist-social-media-div {\n    margin-top: 70px;\n    margin-bottom: 100px;\n}\n\n.artist-social-media-link {\n    display: inline-block;\n    margin-left: 5px;\n    margin-right: 5px;\n    width: 35px;\n}\n\n.artist-social-media-link img {\n    width: 35px;\n}\n\n.page-not-found {\n    height: 100%;\n    background: black;\n    color: white;\n    padding: 5%;\n    position: relative;\n    text-align: center;\n}\n\n.page-not-found img {\n    width: 100%;\n}\n\n.page-not-found p {\n    font-weight: bold;\n    font-size: 24px;\n    width: 100%;\n}", ""]);
 
 // exports
 
@@ -917,7 +938,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/artists/artist-show/artist-show.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- _id?: string;\nfirstName: string;\nlastName: string;\ndetails: string;\nemail: string;\nphone: string;\nartistName: string;\nsoundcloudUrl: string;\ntwitterUrl: string;\nfacebookUrl: string;\ninstagramUrl: string;\nsnapchatUrl: string;\ntagLine: string;\nbiography: string;\nisAdmin: boolean; -->\n<div *ngIf=\"loaded && artist$ !== undefined\">\n  <div>\n    <h1>{{artist$.artistName}}</h1>\n    <p>{{artist$.tagLine}}</p>\n  </div>\n  <div>\n    <h3>ABOUT THE ARTIST</h3>\n    <p>{{artist$.biography}}</p>\n\n    <p>On this social media account is where I do this.</p> \n  </div>\n  <div>\n    <h1>DISCOGRAPHY</h1>\n  </div>\n  <p>\n    Artist is {{ artist$.artistName }}\n  </p>\n</div>\n<div *ngIf=\"loaded && artist$ === undefined\">\n  <p>The page you are looking for does not exist</p>\n</div>\n"
+module.exports = "<div *ngIf=\"!loaded && artist$ === undefined\">\n  <img src=\"/assets/loading.svg\" />\n</div>\n\n<div *ngIf=\"loaded && artist$ !== undefined\">\n  <div class=\"artist-main-div\">\n    <h1 class=\"artist-name\">{{artist$.artistName}}</h1>\n    <p class=\"artist-tagline\">{{artist$.tagLine || \"I am the one who knocks\"}}</p>\n  </div>\n  <div class=\"arist-social-div\">\n    <div class=\"artist-social-div-info\">\n      <h3 class=\"artist-about-label\">ABOUT THE ARTIST</h3>\n      <p class=\"artist-biography\">{{artist$.biography || \"Lorem Khaled Ipsum is a major key to success. Put it this way, it took me twenty five years\n        to get these plants, twenty five years of blood sweat and tears, and I’m never giving up, I’m just getting started.\n        You should never complain, complaining is a weak emotion, you got life, we breathing, we blessed. Let’s see what\n        Chef Dee got that they don’t want us to eat. Surround yourself with angels. Cloth talk. Bless up. The weather is\n        amazing, walk with me through the pathway of more success. Take this journey with me, Lion! You see the hedges, how\n        I got it shaped up? It’s important to shape up your hedges, it’s like getting a haircut, stay fresh.\"}}</p>\n\n        <div class=\"artist-social-media-div\">\n          <div class=\"artist-social-media-link\">\n            <a href=\"{{artist$.facebookUrl}}\"><img src=\"/assets/facebook.png\" /></a>\n          </div>\n\n          <div class=\"artist-social-media-link\">\n            <a href=\"{{artist$.twitterUrl}}\"><img src=\"/assets/twitter.png\" /></a>\n          </div>\n\n          <div class=\"artist-social-media-link\">\n            <a href=\"{{artist$.snapchatUrl}}\"><img src=\"/assets/snapchat.png\" /></a>\n          </div>\n\n          <div class=\"artist-social-media-link\">\n            <a href=\"{{artist$.instagramUrl}}\"><img src=\"/assets/instagram.png\" /></a>\n          </div>\n\n          <div class=\"artist-social-media-link\">\n            <a href=\"{{artist$.soundcloudUrl}}\"><img src=\"/assets/soundcloud.png\" /></a>\n          </div>\n\n          <div class=\"artist-social-media-link\">\n            <a href=\"{{artist$.youtubeUrl}}\"><img src=\"/assets/youtube.png\" /></a>\n          </div>\n        </div>\n\n      <p class=\"artist-social-tagline\">On this social media account is where I do this.</p>\n    </div>\n  </div>\n  <div class=\"artist-discography-div\">\n    <h1>DISCOGRAPHY</h1>\n    <img class=\"img-responsive\" style=\"width: 42%; margin: 0 auto;\" src=\"/assets/albums_preview.png\" />\n  </div>\n</div>\n\n<div class=\"page-not-found\" *ngIf=\"loaded && !artistExists\">\n  <p>The page you are looking for does not exist</p>\n  <img src=\"/assets/404.gif\" />\n</div>"
 
 /***/ }),
 
@@ -949,6 +970,7 @@ var ArtistShowComponent = (function () {
         this.router = router;
         this.artistService = artistService;
         this.loaded = false;
+        this.artistExists = false;
     }
     ArtistShowComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -957,10 +979,11 @@ var ArtistShowComponent = (function () {
                 .getArtists()
                 .then(function (artists) {
                 if (artists !== undefined) {
-                    _this.artist$ = artists.find(function (artist) { return artist.artistName === params.get('artistname'); });
+                    _this.artist$ = artists.find(function (artist) { return artist.artistUrl === params.get('artistname'); });
                 }
+                _this.artistExists = _this.artist$ !== undefined;
+                _this.loaded = true;
             });
-            _this.loaded = true;
         });
     };
     ArtistShowComponent = __decorate([
@@ -1456,8 +1479,6 @@ var UserDetailsComponent = (function () {
         this.userService = userService;
     }
     UserDetailsComponent.prototype.ngOnInit = function () {
-        var t = new __WEBPACK_IMPORTED_MODULE_1__user__["a" /* TestMongoose */]();
-        t.sumthin();
         this.validationTest();
     };
     UserDetailsComponent.prototype.createUser = function (user) {
@@ -1489,7 +1510,7 @@ var UserDetailsComponent = (function () {
         });
     };
     UserDetailsComponent.prototype.validateUser = function (user) {
-        var doc = new mongoose.Document({}, __WEBPACK_IMPORTED_MODULE_1__user__["b" /* UserSchema */]);
+        var doc = new mongoose.Document({}, UserSchema);
         doc.validate(function (error) {
             // console.log('error', error);
             return false;
@@ -1505,7 +1526,7 @@ var UserDetailsComponent = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
-        __metadata("design:type", Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__user__["a" /* IUserModel */])
     ], UserDetailsComponent.prototype, "user", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
@@ -1744,78 +1765,75 @@ var UserService = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export Schema */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestMongoose; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UserSchema; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IUserModel; });
 /* unused harmony export UserModel */
-var Schema = mongoose.Schema;
-var schema = new Schema({
-    firstName: {
-        type: String,
-        require: true
-    },
-    lastName: {
-        type: String,
-        require: true
-    },
-    details: {
-        type: String,
-        require: true
-    },
-    email: {
-        type: String,
-        require: true,
-        lowercase: true,
-        unique: true,
-        required: 'Email address is required',
-        validate: {
-            validator: function (email) {
-                var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                return re.test(email);
-            },
-            message: 'Please fill a valid email address'
-        },
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-    },
-    phone: {
-        type: String,
-        validate: {
-            validator: function (v) {
-                return /\d{3}-\d{3}-\d{4}/.test(v);
-            },
-            message: '{VALUE} is not a valid phone number!'
-        },
-        required: [true, 'User phone number required']
-    },
-    createdAt: {
-        type: Date,
-        required: false
-    },
-    modifiedAt: {
-        type: Date,
-        required: false
+// export let Schema = mongoose.Schema;
+// export interface IUserModel extends mongoose.Document {
+var IUserModel = (function () {
+    function IUserModel() {
     }
-}).pre('save', function (next) {
-    if (this._doc) {
-        var doc = this._doc;
-        var now = new Date();
-        if (!doc.createdAt) {
-            doc.createdAt = now;
-        }
-        doc.modifiedAt = now;
-    }
-    next();
-    return this;
-});
-var TestMongoose = (function () {
-    function TestMongoose() {
-    }
-    TestMongoose.prototype.sumthin = function () { console.log('mongoose'); };
-    return TestMongoose;
+    return IUserModel;
 }());
 
+// let schema = new mongoose.Schema({
+//     firstName: {
+//         type: String,
+//         require: true
+//     },
+//     lastName: {
+//         type: String,
+//         require: true
+//     },
+//     details: {
+//         type: String,
+//         require: true
+//     },
+//     email: {
+//         type: String,
+//         require: true,
+//         lowercase: true,
+//         unique: true,
+//         required: 'Email address is required',
+//         validate: {
+//             validator: function (email) {
+//                 var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//                 return re.test(email)
+//             }, 
+//             message: 'Please fill a valid email address'},
+//         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+//     },
+//     phone: {
+//         type: String,
+//         validate: {
+//             validator: function (v) {
+//                 return /\d{3}-\d{3}-\d{4}/.test(v);
+//             },
+//             message: '{VALUE} is not a valid phone number!'
+//         },
+//         required: [true, 'User phone number required']
+//     },
+//     createdAt: {
+//         type: Date,
+//         required: false
+//     },
+//     modifiedAt: {
+//         type: Date,
+//         required: false
+//     }
+// }).pre('save', function (next) {
+//     if (this._doc) {
+//         let doc = <IUserModel>this._doc;
+//         let now = new Date();
+//         if (!doc.createdAt) {
+//             doc.createdAt = now;
+//         }
+//         doc.modifiedAt = now;
+//     }
+//     next();
+//     return this;
+// });
 // export let UserSchema = mongoose.model<IUserModel>('user', schema, 'users', true);
-var UserSchema = schema;
+// export let UserSchema = schema;
 var UserModel = (function () {
     function UserModel(userModel) {
         this._userModel = userModel;
