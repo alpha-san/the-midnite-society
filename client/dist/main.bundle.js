@@ -50,7 +50,7 @@ module.exports = "<div *ngIf=\"album\" class=\"row\">\n  <div class=\"col-md-12\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__album__ = __webpack_require__("../../../../../src/app/albums/album.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__album_service__ = __webpack_require__("../../../../../src/app/albums/album.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__users_user_service__ = __webpack_require__("../../../../../src/app/users/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__artists_artist_service__ = __webpack_require__("../../../../../src/app/artists/artist.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,28 +65,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AlbumDetailsComponent = (function () {
-    function AlbumDetailsComponent(albumService, userService) {
+    function AlbumDetailsComponent(albumService, artistService) {
         this.albumService = albumService;
-        this.userService = userService;
+        this.artistService = artistService;
         this.mySettings = {
             selectionLimit: 1
         };
     }
     AlbumDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.userService
-            .getUsers()
-            .then(function (users) {
-            if (users !== undefined) {
-                _this.users = users.map(function (user) {
-                    return user;
-                });
-                _this.selectUserOptions = users.map(function (user) {
-                    return { id: user._id, name: user.firstName + ' ' + user.lastName };
+        console.log('album', this);
+        if (this.album) {
+            console.log;
+            this.selectedUser = this.album.artist_id;
+        }
+        this.artistService
+            .getArtists()
+            .then(function (artists) {
+            if (artists) {
+                console.log('response', artists);
+                _this.artists = artists;
+                _this.selectUserOptions = artists.map(function (artist) {
+                    return { id: artist._id, name: artist.artistName };
                 });
             }
         });
-        console.log('details:ngOnInit', this.album);
+    };
+    AlbumDetailsComponent.prototype.ngOnChanges = function (changes) {
+        console.log('changes', changes);
+        if (changes.album.currentValue) {
+            this.selectedUser = this.album.artist_id;
+        }
     };
     AlbumDetailsComponent.prototype.createAlbum = function (album) {
         var _this = this;
@@ -97,7 +106,6 @@ var AlbumDetailsComponent = (function () {
     };
     AlbumDetailsComponent.prototype.updateAlbum = function (album) {
         var _this = this;
-        console.log('details:updateAlbum', album);
         this.albumService.updateAlbum(album).then(function (updatedAlbum) {
             _this.updateHandler(updatedAlbum);
         });
@@ -130,7 +138,7 @@ var AlbumDetailsComponent = (function () {
             template: __webpack_require__("../../../../../src/app/albums/album-details/album-details.component.html"),
             styles: [__webpack_require__("../../../../../src/app/albums/album-details/album-details.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__album_service__["a" /* AlbumService */], __WEBPACK_IMPORTED_MODULE_3__users_user_service__["a" /* UserService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__album_service__["a" /* AlbumService */], __WEBPACK_IMPORTED_MODULE_3__artists_artist_service__["a" /* ArtistService */]])
     ], AlbumDetailsComponent);
     return AlbumDetailsComponent;
 }());
@@ -358,7 +366,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/\" routerlinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/work\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/store\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a href=\"#contact\">Contact</a>\n        </li>\n        <li *ngIf=\"auth.isAuthenticated()\" class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">Log In</a>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">Log Out</a>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<div class=\"router-outlet-div\">\n  <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" routerLink=\"/\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/home\" routerLinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/creations\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/shop\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a routerLink=\"/contact\" routerLinkActive=\"active\">Contact</a>\n        </li>\n        <li *ngIf=\"auth.isAuthenticated()\" class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">Log In</a>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">Log Out</a>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<div class=\"router-outlet-div\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -389,6 +397,9 @@ var AppComponent = (function () {
         this.auth = authService;
         this.auth.handleAuthentication();
     }
+    AppComponent.prototype.ngOnInit = function () {
+        console.log('app component on init', mongoose);
+    };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
@@ -433,6 +444,10 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__artists_artist_details_artist_details_component__ = __webpack_require__("../../../../../src/app/artists/artist-details/artist-details.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__artists_artist_admin_list_artist_admin_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__blogposts_blog_blog_component__ = __webpack_require__("../../../../../src/app/blogposts/blog/blog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__contact_contact_component__ = __webpack_require__("../../../../../src/app/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__creations_creations_component__ = __webpack_require__("../../../../../src/app/creations/creations.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__shop_shop_component__ = __webpack_require__("../../../../../src/app/shop/shop.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -463,9 +478,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
 // define routes
 var appRoutes = [
     // public routes
+    {
+        path: '',
+        component: __WEBPACK_IMPORTED_MODULE_23__home_home_component__["a" /* HomeComponent */],
+        data: { title: 'Home' }
+    },
+    {
+        path: 'home',
+        component: __WEBPACK_IMPORTED_MODULE_23__home_home_component__["a" /* HomeComponent */],
+        data: { title: 'Home' }
+    },
     {
         path: 'artist/all',
         component: __WEBPACK_IMPORTED_MODULE_20__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
@@ -475,6 +504,26 @@ var appRoutes = [
         path: 'artists/show',
         component: __WEBPACK_IMPORTED_MODULE_19__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
         data: { title: 'Artists' }
+    },
+    {
+        path: 'creations',
+        component: __WEBPACK_IMPORTED_MODULE_26__creations_creations_component__["a" /* CreationsComponent */],
+        data: { title: 'Creations' }
+    },
+    {
+        path: 'shop',
+        component: __WEBPACK_IMPORTED_MODULE_27__shop_shop_component__["a" /* ShopComponent */],
+        data: { title: 'Shop' }
+    },
+    {
+        path: 'blog',
+        component: __WEBPACK_IMPORTED_MODULE_24__blogposts_blog_blog_component__["a" /* BlogComponent */],
+        data: { title: 'Blog' }
+    },
+    {
+        path: 'contact',
+        component: __WEBPACK_IMPORTED_MODULE_25__contact_contact_component__["a" /* ContactComponent */],
+        data: { title: 'Contact' }
     },
     {
         path: 'callback',
@@ -526,7 +575,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_20__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
                 __WEBPACK_IMPORTED_MODULE_22__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
                 __WEBPACK_IMPORTED_MODULE_21__artists_artist_details_artist_details_component__["a" /* ArtistDetailsComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__home_home_component__["a" /* HomeComponent */]
+                __WEBPACK_IMPORTED_MODULE_23__home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__blogposts_blog_blog_component__["a" /* BlogComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__contact_contact_component__["a" /* ContactComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__creations_creations_component__["a" /* CreationsComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__shop_shop_component__["a" /* ShopComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -671,7 +724,8 @@ var ArtistAdminListComponent = (function () {
             youtubeUrl: '',
             tagLine: '',
             biography: '',
-            isAdmin: false
+            isAdmin: false,
+            albums: []
         };
         this.selectArtist(artist);
     };
@@ -811,7 +865,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/artists/artist-list/artist-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <h2>Artists</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\" *ngFor=\"let artists of artists\" (click)=\"selectArtist(artist)\" [class.active]=\"artist === selectedArtist\">\n        {{artist.firstName}} {{artist.lastName}}\n      </li>\n    </ul>\n    <button class=\"btn btn-warning\" (click)=\"createNewArtist()\">New</button>\n  </div>\n  <div class=\"col-md-5 col-md-offset-2\">\n    <artist-details \n      [artist]=\"selectedArtist\" \n      [createHandler]=\"createNewArtist\" \n      [updateHandler]=\"updateArtist\" \n      [deleteHandler]=\"deleteArtist\">\n    </artist-details>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <h2>The Midnite Society Roster</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\" *ngFor=\"let artist of artists\" ng-if=\"artist.artistUrl\">\n        <a routerLink=\"/{{artist.artistUrl}}\">{{artist.artistName}}</a>\n      </li>\n    </ul>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -869,11 +923,12 @@ var ArtistListComponent = (function () {
         this.artistService
             .getArtists()
             .then(function (artists) {
-            if (artists !== undefined) {
+            if (artists) {
                 _this.artists = artists.map(function (artist) {
                     return artist;
                 });
             }
+            console.log('artist-list init', artists);
         });
     };
     ArtistListComponent.prototype.selectArtist = function (artist) {
@@ -897,7 +952,8 @@ var ArtistListComponent = (function () {
             youtubeUrl: '',
             tagLine: '',
             biography: '',
-            isAdmin: false
+            isAdmin: false,
+            albums: []
         };
         this.selectArtist(artist);
     };
@@ -1181,6 +1237,67 @@ var AuthService = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/blogposts/blog/blog.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/blogposts/blog/blog.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  blog works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/blogposts/blog/blog.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BlogComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var BlogComponent = (function () {
+    function BlogComponent() {
+    }
+    BlogComponent.prototype.ngOnInit = function () {
+    };
+    BlogComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-blog',
+            template: __webpack_require__("../../../../../src/app/blogposts/blog/blog.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/blogposts/blog/blog.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], BlogComponent);
+    return BlogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/call-back/call-back.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1246,6 +1363,128 @@ var CallBackComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/contact/contact.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/contact/contact.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  contact works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/contact/contact.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ContactComponent = (function () {
+    function ContactComponent() {
+    }
+    ContactComponent.prototype.ngOnInit = function () {
+    };
+    ContactComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-contact',
+            template: __webpack_require__("../../../../../src/app/contact/contact.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/contact/contact.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ContactComponent);
+    return ContactComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/creations/creations.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/creations/creations.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  creations works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/creations/creations.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreationsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CreationsComponent = (function () {
+    function CreationsComponent() {
+    }
+    CreationsComponent.prototype.ngOnInit = function () {
+    };
+    CreationsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-creations',
+            template: __webpack_require__("../../../../../src/app/creations/creations.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/creations/creations.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CreationsComponent);
+    return CreationsComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/home/home.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1301,6 +1540,67 @@ var HomeComponent = (function () {
         __metadata("design:paramtypes", [])
     ], HomeComponent);
     return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/shop/shop.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/shop/shop.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  shop works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/shop/shop.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShopComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ShopComponent = (function () {
+    function ShopComponent() {
+    }
+    ShopComponent.prototype.ngOnInit = function () {
+    };
+    ShopComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-shop',
+            template: __webpack_require__("../../../../../src/app/shop/shop.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/shop/shop.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ShopComponent);
+    return ShopComponent;
 }());
 
 
@@ -1479,6 +1779,7 @@ var UserDetailsComponent = (function () {
         this.userService = userService;
     }
     UserDetailsComponent.prototype.ngOnInit = function () {
+        console.log('mongoose', mongoose);
         this.validationTest();
     };
     UserDetailsComponent.prototype.createUser = function (user) {
@@ -1510,7 +1811,7 @@ var UserDetailsComponent = (function () {
         });
     };
     UserDetailsComponent.prototype.validateUser = function (user) {
-        var doc = new mongoose.Document({}, UserSchema);
+        var doc = new mongoose.Document({}, __WEBPACK_IMPORTED_MODULE_1__user__["b" /* UserSchema */]);
         doc.validate(function (error) {
             // console.log('error', error);
             return false;
@@ -1766,6 +2067,7 @@ var UserService = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IUserModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UserSchema; });
 /* unused harmony export UserModel */
 // export let Schema = mongoose.Schema;
 // export interface IUserModel extends mongoose.Document {
@@ -1775,65 +2077,66 @@ var IUserModel = (function () {
     return IUserModel;
 }());
 
-// let schema = new mongoose.Schema({
-//     firstName: {
-//         type: String,
-//         require: true
-//     },
-//     lastName: {
-//         type: String,
-//         require: true
-//     },
-//     details: {
-//         type: String,
-//         require: true
-//     },
-//     email: {
-//         type: String,
-//         require: true,
-//         lowercase: true,
-//         unique: true,
-//         required: 'Email address is required',
-//         validate: {
-//             validator: function (email) {
-//                 var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-//                 return re.test(email)
-//             }, 
-//             message: 'Please fill a valid email address'},
-//         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-//     },
-//     phone: {
-//         type: String,
-//         validate: {
-//             validator: function (v) {
-//                 return /\d{3}-\d{3}-\d{4}/.test(v);
-//             },
-//             message: '{VALUE} is not a valid phone number!'
-//         },
-//         required: [true, 'User phone number required']
-//     },
-//     createdAt: {
-//         type: Date,
-//         required: false
-//     },
-//     modifiedAt: {
-//         type: Date,
-//         required: false
-//     }
-// }).pre('save', function (next) {
-//     if (this._doc) {
-//         let doc = <IUserModel>this._doc;
-//         let now = new Date();
-//         if (!doc.createdAt) {
-//             doc.createdAt = now;
-//         }
-//         doc.modifiedAt = now;
-//     }
-//     next();
-//     return this;
-// });
+var schema = new mongoose.Schema({
+    firstName: {
+        type: String,
+        require: true
+    },
+    lastName: {
+        type: String,
+        require: true
+    },
+    details: {
+        type: String,
+        require: true
+    },
+    email: {
+        type: String,
+        require: true,
+        lowercase: true,
+        unique: true,
+        required: 'Email address is required',
+        validate: {
+            validator: function (email) {
+                var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                return re.test(email);
+            },
+            message: 'Please fill a valid email address'
+        },
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+    },
+    phone: {
+        type: String,
+        validate: {
+            validator: function (v) {
+                return /\d{3}-\d{3}-\d{4}/.test(v);
+            },
+            message: '{VALUE} is not a valid phone number!'
+        },
+        required: [true, 'User phone number required']
+    },
+    createdAt: {
+        type: Date,
+        required: false
+    },
+    modifiedAt: {
+        type: Date,
+        required: false
+    }
+}).pre('save', function (next) {
+    if (this._doc) {
+        var doc = this._doc;
+        var now = new Date();
+        if (!doc.createdAt) {
+            doc.createdAt = now;
+        }
+        doc.modifiedAt = now;
+    }
+    next();
+    return this;
+});
 // export let UserSchema = mongoose.model<IUserModel>('user', schema, 'users', true);
-// export let UserSchema = schema;
+var UserSchema = schema;
 var UserModel = (function () {
     function UserModel(userModel) {
         this._userModel = userModel;

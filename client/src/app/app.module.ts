@@ -25,19 +25,54 @@ import { ArtistListComponent } from './artists/artist-list/artist-list.component
 import { ArtistDetailsComponent } from './artists/artist-details/artist-details.component';
 import { ArtistAdminListComponent } from './artists/artist-admin-list/artist-admin-list.component';
 import { HomeComponent } from './home/home.component';
+import { BlogComponent } from './blogposts/blog/blog.component';
+import { ContactComponent } from './contact/contact.component';
+import { CreationsComponent } from './creations/creations.component';
+import { ShopComponent } from './shop/shop.component';
 
 // define routes
 const appRoutes: Routes = [
   // public routes
-  { 
-    path: 'artist/all', 
+  {
+    path: '',
+    component: HomeComponent ,
+    data: { title: 'Home' }
+  },
+  {
+    path: 'home',
+    component: HomeComponent ,
+    data: { title: 'Home' }
+  },
+  {
+    path: 'artist/all',
     component: ArtistListComponent ,
     data: { title: 'Artists' }
   },
-  { 
-    path: 'artists/show', 
+  {
+    path: 'artists/show',
     component: ArtistShowComponent ,
     data: { title: 'Artists' }
+  },
+  {
+    path: 'creations',
+    component: CreationsComponent,
+    data: { title: 'Creations' }
+  },
+
+  {
+    path: 'shop',
+    component: ShopComponent,
+    data: { title: 'Shop' }
+  },
+  {
+    path: 'blog',
+    component: BlogComponent,
+    data: { title: 'Blog' }
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+    data: { title: 'Contact' }
   },
   {
     path: 'callback',
@@ -45,13 +80,13 @@ const appRoutes: Routes = [
     data: { title: 'Loading'}
   },
   // admin routes
-  { 
-    path: 'users', 
+  {
+    path: 'users',
     component: UserListComponent ,
     data: { title: 'Users' }
   },
-  { 
-    path: 'artists', 
+  {
+    path: 'artists',
     component: ArtistAdminListComponent ,
     data: { title: 'Artists' }
   },
@@ -86,7 +121,11 @@ const appRoutes: Routes = [
     ArtistListComponent,
     ArtistAdminListComponent,
     ArtistDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    BlogComponent,
+    ContactComponent,
+    CreationsComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

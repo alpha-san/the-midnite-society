@@ -9,7 +9,7 @@ import { ArtistDetailsComponent } from '../artist-details/artist-details.compone
   styleUrls: ['./artist-admin-list.component.css']
 })
 export class ArtistAdminListComponent implements OnInit {
-  
+
   artists: Artist[];
   selectedArtist: Artist;
 
@@ -72,7 +72,8 @@ export class ArtistAdminListComponent implements OnInit {
       youtubeUrl: '',
       tagLine: '',
       biography: '',
-      isAdmin: false
+      isAdmin: false,
+      albums: []
     };
 
     this.selectArtist(artist);

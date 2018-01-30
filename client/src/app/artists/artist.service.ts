@@ -3,6 +3,7 @@ import { Artist } from './artist';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+
 @Injectable()
 export class ArtistService {
   private artistsUrl = '/api/artists';
@@ -11,6 +12,7 @@ export class ArtistService {
 
   // get('/api/artists')
   getArtists(): Promise<void | Artist[]> {
+
     return this.http.get(this.artistsUrl)
       .toPromise()
       .then(response => response.json() as Artist[])

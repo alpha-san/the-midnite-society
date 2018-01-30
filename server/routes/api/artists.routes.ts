@@ -1,18 +1,32 @@
 var express = require('express');
 var router = express.Router();
 
+export {};
+
 const ARTISTS_COLLECTION = "artists";
+const ALBUMS_COLLECTION = "albums";
 
 // ARTISTS ROUTES BELOW
 
 router.get("/", function (req, res) {
-  req.app.db.collection(ARTISTS_COLLECTION).find({}).toArray(function (err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get artists.", 500);
-    } else {
-      res.status(200).json(docs);
-    }
-  });
+
+  let db = req.app.db;
+  db.collection(ARTISTS_COLLECTION)
+    .aggregate([
+      {
+        $lookup: {
+          from: ALBUMS_COLLECTION,
+          localField: "_id",
+          foreignField: "artist_id",
+          as: "albums"
+        }
+      }
+    ])
+    .toArray((err, docs) => {
+      if (err) handleError(res, err.message, "Failed to get albums for artists", 500);
+      console.log('success', docs);
+      return res.status(200).json(docs);
+    });
 });
 
 router.post("/", function (req, res) {

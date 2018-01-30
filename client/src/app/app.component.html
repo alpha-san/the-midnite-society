@@ -8,15 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">The Midnite Society</a>
+      <a class="navbar-brand" routerLink="/">The Midnite Society</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active">
-          <a routerLink="/" routerlinkActive="active">Home</a>
+          <a routerLink="/home" routerLinkActive="active">Home</a>
         </li>
         <li>
-          <a routerLink="/work" routerLinkActive="active">Creations</a>
+          <a routerLink="/creations" routerLinkActive="active">Creations</a>
         </li>
         <li>
           <a routerLink="/artist/all" routerLinkActive="active">Artists</a>
@@ -25,10 +25,10 @@
           <a routerLink="/blog" routerLinkActive="active">Blog</a>
         </li>
         <li>
-          <a routerLink="/store" routerLinkActive="active">Shop</a>
+          <a routerLink="/shop" routerLinkActive="active">Shop</a>
         </li>
         <li>
-          <a href="#contact">Contact</a>
+          <a routerLink="/contact" routerLinkActive="active">Contact</a>
         </li>
         <li *ngIf="auth.isAuthenticated()" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Menu

@@ -1,3 +1,5 @@
+import { Album } from '../albums/album';
+
 export class Artist {
     _id?: string;
     firstName: string;
@@ -16,6 +18,7 @@ export class Artist {
     tagLine: string;
     biography: string;
     isAdmin: boolean;
+    albums: Array<Album>;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

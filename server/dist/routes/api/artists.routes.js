@@ -1,15 +1,28 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var express = require('express');
 var router = express.Router();
 var ARTISTS_COLLECTION = "artists";
+var ALBUMS_COLLECTION = "albums";
 // ARTISTS ROUTES BELOW
 router.get("/", function (req, res) {
-    req.app.db.collection(ARTISTS_COLLECTION).find({}).toArray(function (err, docs) {
-        if (err) {
-            handleError(res, err.message, "Failed to get artists.", 500);
+    var db = req.app.db;
+    db.collection(ARTISTS_COLLECTION)
+        .aggregate([
+        {
+            $lookup: {
+                from: ALBUMS_COLLECTION,
+                localField: "_id",
+                foreignField: "artist_id",
+                as: "albums"
+            }
         }
-        else {
-            res.status(200).json(docs);
-        }
+    ])
+        .toArray(function (err, docs) {
+        if (err)
+            handleError(res, err.message, "Failed to get albums for artists", 500);
+        console.log('success', docs);
+        return res.status(200).json(docs);
     });
 });
 router.post("/", function (req, res) {

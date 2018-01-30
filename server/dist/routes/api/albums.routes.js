@@ -14,6 +14,8 @@ router.get("/", function (req, res) {
 });
 router.post("/", function (req, res) {
     var newAlbum = req.body;
+    console.log('POST: ', newAlbum);
+    newAlbum.artist_id = req.app.mongoose.Types.ObjectId(newAlbum.artist_id);
     // validation error checking here
     //   if (!req.body.name) {
     //     handleError(res, "Invalid user input", "Must provide a name.", 400);

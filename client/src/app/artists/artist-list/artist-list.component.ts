@@ -20,11 +20,13 @@ export class ArtistListComponent implements OnInit {
     this.artistService
       .getArtists()
       .then((artists: Artist[]) => {
-        if (artists !== undefined) {
+        if (artists) {
           this.artists = artists.map((artist) => {
             return artist;
           });
         }
+
+        console.log('artist-list init', artists);
       })
   }
 
@@ -56,7 +58,8 @@ export class ArtistListComponent implements OnInit {
       youtubeUrl: '',
       tagLine: '',
       biography: '',
-      isAdmin: false
+      isAdmin: false,
+      albums: []
     }
 
     this.selectArtist(artist);

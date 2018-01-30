@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IUserModel } from '../user';
+import { IUserModel, UserSchema } from '../user';
 import { UserService } from '../user.service';
 import * as assert from 'assert';
 
@@ -18,6 +18,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    console.log('mongoose', mongoose);
     this.validationTest();
   }
 

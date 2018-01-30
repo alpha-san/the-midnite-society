@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { environment } from '../environments/environment';
 // access environment variables from here
@@ -9,12 +9,16 @@ import { environment } from '../environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'The Midnite Society';
   auth: any;
 
   constructor(private authService: AuthService) { 
     this.auth = authService;
     this.auth.handleAuthentication();
+  }
+
+  ngOnInit() {
+    console.log('app component on init', mongoose);
   }
 }

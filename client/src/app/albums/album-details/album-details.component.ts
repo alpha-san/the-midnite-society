@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Album } from '../album';
-import { IUserModel } from '../../users/user';
+import { Artist } from '../../artists/artist';
 import { AlbumService } from '../album.service';
-import { UserService } from '../../users/user.service';
+import { ArtistService } from '../../artists/artist.service';
 import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 
 @Component({
@@ -10,38 +10,49 @@ import { IMultiSelectOption, IMultiSelectSettings } from 'angular-2-dropdown-mul
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.css']
 })
-export class AlbumDetailsComponent implements OnInit {
+export class AlbumDetailsComponent implements OnInit, OnChanges {
   @Input() album: Album;
 
   @Input() createHandler: Function;
   @Input() updateHandler: Function;
   @Input() deleteHandler: Function;
 
-  users: IUserModel[]
+  artists: Artist[]
   selectedUser: string
   selectUserOptions: IMultiSelectOption[]
   mySettings: IMultiSelectSettings = {
     selectionLimit: 1
   }
 
-  constructor(private albumService: AlbumService, private userService: UserService) { }
+  constructor(private albumService: AlbumService, private artistService: ArtistService) { }
 
   ngOnInit() {
-    this.userService
-      .getUsers()
-      .then((users: IUserModel[]) => {
-        if (users !== undefined) {
-          this.users = users.map((user) => {
-            return user;
-          });
+    console.log('album', this);
 
-          this.selectUserOptions = users.map((user) => {
-            return { id: user._id, name: user.firstName + ' ' + user.lastName }
+    if (this.album) {
+      console.log
+      this.selectedUser = this.album.artist_id;
+    }
+
+    this.artistService
+      .getArtists()
+      .then((artists: Artist[]) => {
+        if (artists) {
+          console.log('response', artists);
+          this.artists = artists;
+
+          this.selectUserOptions = artists.map((artist) => {
+            return { id: artist._id, name: artist.artistName }
           })
         }
       })
+  }
 
-    console.log('details:ngOnInit', this.album);
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('changes',  changes);
+    if (changes.album.currentValue) {
+      this.selectedUser = this.album.artist_id;
+    }
   }
 
   createAlbum(album: Album) {
@@ -52,7 +63,6 @@ export class AlbumDetailsComponent implements OnInit {
   }
 
   updateAlbum(album: Album) {
-    console.log('details:updateAlbum', album);
     this.albumService.updateAlbum(album).then((updatedAlbum: Album) => {
       this.updateHandler(updatedAlbum);
     })

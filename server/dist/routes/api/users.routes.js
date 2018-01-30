@@ -29,6 +29,7 @@ router.get("/", function (req, res) {
 });
 router.post("/", function (req, res) {
     var newContact = req.body;
+    newContact.createdAt = new Date().toLocaleString();
     // validation error checking here
     //   if (!req.body.name) {
     //     handleError(res, "Invalid user input", "Must provide a name.", 400);
@@ -46,6 +47,10 @@ router.get("/:id", function (req, res) {
 });
 router.put("/:id", function (req, res) {
     var updatedUser = req.body;
+    if (!updatedUser.createdAt)
+        updatedUser.createdAt = new Date().toLocaleString();
+    else
+        updatedUser.modifiedAt = new Date().toLocaleString();
     console.log('server.js:put', updatedUser);
     req.app.db.collection(USERS_COLLECTION).updateOne({ "_id": new req.app.mongodb.ObjectId(updatedUser._id) }, {
         $set: {
