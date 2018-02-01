@@ -51,7 +51,10 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     console.log('changes',  changes);
     if (changes.album.currentValue) {
-      this.selectedUser = this.album.artist_id;
+      if (this.album.artist_id.length)
+        this.selectedUser = this.album.artist_id;
+    } else {
+      this.selectedUser = null;
     }
   }
 
