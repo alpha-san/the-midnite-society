@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel, IUserModel, UserSchema } from '../user';
+import { UserModel, IUserModel } from '../user';
 import { UserService } from '../user.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 
@@ -56,7 +56,7 @@ export class UserListComponent implements OnInit {
     // UserModel.createUser('', '', '', '', '').then(res => {
     //   this.selectUser(<IUserModel>res);
     // }, err => {
-    //   if (err) { 
+    //   if (err) {
     //     console.log(err.message);
     //   }
     // });

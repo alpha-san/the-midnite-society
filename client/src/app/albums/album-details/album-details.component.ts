@@ -27,10 +27,7 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
   constructor(private albumService: AlbumService, private artistService: ArtistService) { }
 
   ngOnInit() {
-    console.log('album', this);
-
     if (this.album) {
-      console.log
       this.selectedUser = this.album.artist_id;
     }
 
@@ -76,5 +73,4 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
       this.deleteHandler(deletedAlbumId);
     })
   }
-
 }

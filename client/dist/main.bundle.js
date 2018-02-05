@@ -74,9 +74,7 @@ var AlbumDetailsComponent = (function () {
     }
     AlbumDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log('album', this);
         if (this.album) {
-            console.log;
             this.selectedUser = this.album.artist_id;
         }
         this.artistService
@@ -441,17 +439,18 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__users_user_service__ = __webpack_require__("../../../../../src/app/users/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__albums_album_service__ = __webpack_require__("../../../../../src/app/albums/album.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__artists_artist_service__ = __webpack_require__("../../../../../src/app/artists/artist.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angular_2_dropdown_multiselect__ = __webpack_require__("../../../../angular-2-dropdown-multiselect/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__call_back_call_back_component__ = __webpack_require__("../../../../../src/app/call-back/call-back.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__artists_artist_show_artist_show_component__ = __webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__artists_artist_list_artist_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__artists_artist_details_artist_details_component__ = __webpack_require__("../../../../../src/app/artists/artist-details/artist-details.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__artists_artist_admin_list_artist_admin_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__blogposts_blog_blog_component__ = __webpack_require__("../../../../../src/app/blogposts/blog/blog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__contact_contact_component__ = __webpack_require__("../../../../../src/app/contact/contact.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__creations_creations_component__ = __webpack_require__("../../../../../src/app/creations/creations.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__shop_shop_component__ = __webpack_require__("../../../../../src/app/shop/shop.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__tracks_track_service__ = __webpack_require__("../../../../../src/app/tracks/track.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_angular_2_dropdown_multiselect__ = __webpack_require__("../../../../angular-2-dropdown-multiselect/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__call_back_call_back_component__ = __webpack_require__("../../../../../src/app/call-back/call-back.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__artists_artist_show_artist_show_component__ = __webpack_require__("../../../../../src/app/artists/artist-show/artist-show.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__artists_artist_list_artist_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-list/artist-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__artists_artist_details_artist_details_component__ = __webpack_require__("../../../../../src/app/artists/artist-details/artist-details.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__artists_artist_admin_list_artist_admin_list_component__ = __webpack_require__("../../../../../src/app/artists/artist-admin-list/artist-admin-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__blogposts_blog_blog_component__ = __webpack_require__("../../../../../src/app/blogposts/blog/blog.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__contact_contact_component__ = __webpack_require__("../../../../../src/app/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__creations_creations_component__ = __webpack_require__("../../../../../src/app/creations/creations.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__shop_shop_component__ = __webpack_require__("../../../../../src/app/shop/shop.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -486,52 +485,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 // define routes
 var appRoutes = [
     // public routes
     {
         path: '',
-        component: __WEBPACK_IMPORTED_MODULE_23__home_home_component__["a" /* HomeComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_24__home_home_component__["a" /* HomeComponent */],
         data: { title: 'Home' }
     },
     {
         path: 'home',
-        component: __WEBPACK_IMPORTED_MODULE_23__home_home_component__["a" /* HomeComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_24__home_home_component__["a" /* HomeComponent */],
         data: { title: 'Home' }
     },
     {
         path: 'artist/all',
-        component: __WEBPACK_IMPORTED_MODULE_20__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_21__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
         data: { title: 'Artists' }
     },
     {
         path: 'artists/show',
-        component: __WEBPACK_IMPORTED_MODULE_19__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_20__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
         data: { title: 'Artists' }
     },
     {
         path: 'creations',
-        component: __WEBPACK_IMPORTED_MODULE_26__creations_creations_component__["a" /* CreationsComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_27__creations_creations_component__["a" /* CreationsComponent */],
         data: { title: 'Creations' }
     },
     {
         path: 'shop',
-        component: __WEBPACK_IMPORTED_MODULE_27__shop_shop_component__["a" /* ShopComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_28__shop_shop_component__["a" /* ShopComponent */],
         data: { title: 'Shop' }
     },
     {
         path: 'blog',
-        component: __WEBPACK_IMPORTED_MODULE_24__blogposts_blog_blog_component__["a" /* BlogComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_25__blogposts_blog_blog_component__["a" /* BlogComponent */],
         data: { title: 'Blog' }
     },
     {
         path: 'contact',
-        component: __WEBPACK_IMPORTED_MODULE_25__contact_contact_component__["a" /* ContactComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_26__contact_contact_component__["a" /* ContactComponent */],
         data: { title: 'Contact' }
     },
     {
         path: 'callback',
-        component: __WEBPACK_IMPORTED_MODULE_18__call_back_call_back_component__["a" /* CallBackComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_19__call_back_call_back_component__["a" /* CallBackComponent */],
         data: { title: 'Loading' }
     },
     // admin routes
@@ -542,7 +542,7 @@ var appRoutes = [
     },
     {
         path: 'artists',
-        component: __WEBPACK_IMPORTED_MODULE_22__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
+        component: __WEBPACK_IMPORTED_MODULE_23__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
         data: { title: 'Artists' }
     },
     {
@@ -558,7 +558,7 @@ var appRoutes = [
     // artist page
     {
         path: ':artistname',
-        component: __WEBPACK_IMPORTED_MODULE_19__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */]
+        component: __WEBPACK_IMPORTED_MODULE_20__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */]
     }
 ];
 var AppModule = (function () {
@@ -574,26 +574,26 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_10__albums_album_details_album_details_component__["a" /* AlbumDetailsComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__tracks_track_list_track_list_component__["a" /* TrackListComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__tracks_track_details_track_details_component__["a" /* TrackDetailsComponent */],
-                __WEBPACK_IMPORTED_MODULE_18__call_back_call_back_component__["a" /* CallBackComponent */],
-                __WEBPACK_IMPORTED_MODULE_19__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
-                __WEBPACK_IMPORTED_MODULE_20__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__artists_artist_details_artist_details_component__["a" /* ArtistDetailsComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__blogposts_blog_blog_component__["a" /* BlogComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__contact_contact_component__["a" /* ContactComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__creations_creations_component__["a" /* CreationsComponent */],
-                __WEBPACK_IMPORTED_MODULE_27__shop_shop_component__["a" /* ShopComponent */]
+                __WEBPACK_IMPORTED_MODULE_19__call_back_call_back_component__["a" /* CallBackComponent */],
+                __WEBPACK_IMPORTED_MODULE_20__artists_artist_show_artist_show_component__["a" /* ArtistShowComponent */],
+                __WEBPACK_IMPORTED_MODULE_21__artists_artist_list_artist_list_component__["a" /* ArtistListComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__artists_artist_admin_list_artist_admin_list_component__["a" /* ArtistAdminListComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__artists_artist_details_artist_details_component__["a" /* ArtistDetailsComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__blogposts_blog_blog_component__["a" /* BlogComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__contact_contact_component__["a" /* ContactComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__creations_creations_component__["a" /* CreationsComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__shop_shop_component__["a" /* ShopComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* RouterModule */].forRoot(appRoutes, { enableTracing: true }),
-                __WEBPACK_IMPORTED_MODULE_17_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
+                __WEBPACK_IMPORTED_MODULE_18_angular_2_dropdown_multiselect__["a" /* MultiselectDropdownModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClientModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_13__auth_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_14__users_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__albums_album_service__["a" /* AlbumService */], __WEBPACK_IMPORTED_MODULE_16__artists_artist_service__["a" /* ArtistService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_13__auth_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_14__users_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_15__albums_album_service__["a" /* AlbumService */], __WEBPACK_IMPORTED_MODULE_16__artists_artist_service__["a" /* ArtistService */], __WEBPACK_IMPORTED_MODULE_17__tracks_track_service__["a" /* TrackService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -670,6 +670,7 @@ var ArtistAdminListComponent = (function () {
             return _this.artists;
         };
         this.updateArtist = function (artist) {
+            console.log('updateArtist', artist);
             var idx = _this.getIndexOfArtist(artist._id);
             if (idx !== -1) {
                 _this.artists[idx] = artist;
@@ -1090,8 +1091,14 @@ var ArtistService = (function () {
         this.artistsUrl = '/api/artists';
     }
     // get('/api/artists')
-    ArtistService.prototype.getArtists = function () {
-        return this.http.get(this.artistsUrl)
+    ArtistService.prototype.getArtists = function (include) {
+        if (include === void 0) { include = null; }
+        // return this.http.get(this.artistsUrl)
+        return this.http.get(this.artistsUrl, {
+            body: {
+                "include": include
+            }
+        })
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -1632,7 +1639,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/tracks/track-details/track-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  track-details works!\n</p>\n"
+module.exports = "<div *ngIf=\"track\" class=\"row\">\n  <div class=\"col-md-12\">\n    <h2 *ngIf=\"track._id\">Track Details</h2>\n    <h2 *ngIf=\"!track._id\">New Track</h2>\n  </div>\n</div>\n<div *ngIf=\"track\" class=\"row\">\n  <form class=\"col-md-12\">\n    <div class=\"form-group\">\n      <label for=\"track-name\">Track Name</label>\n      <input class=\"form-control\" name=\"track-name\" [(ngModel)]=\"track.name\" placeholder=\"Track Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-albums\">Album</label>\n      <ss-multiselect-dropdown name=\"track-albums\" [options]=\"selectedTrackOptions\" [(ngModel)]=\"selectedTrack\" [settings]=\"mySettings\"></ss-multiselect-dropdown>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-image-url\">Track Image Url</label>\n      <input class=\"form-control\" name=\"track-image-url\" [(ngModel)]=\"track.trackImageUrl\" placeholder=\"Track Image URL\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-description\">Track Description</label>\n      <input class=\"form-control\" name=\"track-description\" [(ngModel)]=\"track.description\" placeholder=\"Track Description\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-soundcloud-url\">Soundcloud Url</label>\n      <input class=\"form-control\" name=\"track-soundcloud-url\" [(ngModel)]=\"track.soundcloudUrl\" placeholder=\"Track Soundcloud URL\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-youtube-url\">Youtube Url</label>\n      <input class=\"form-control\" name=\"track-youtube-url\" [(ngModel)]=\"track.youtubeUrl\" placeholder=\"Youtube URL\"/>\n    </div>\n    <button class=\"btn btn-primary\" *ngIf=\"!track._id\" (click)=\"createTrack(track)\">Create</button>\n    <button class=\"btn btn-info\" *ngIf=\"track._id\" (click)=\"updateTrack(track)\">Update</button>\n    <button class=\"btn btn-danger\" *ngIf=\"track._id\" (click)=\"deleteTrack(track._id)\">Delete</button>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -1642,6 +1649,9 @@ module.exports = "<p>\n  track-details works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrackDetailsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__track__ = __webpack_require__("../../../../../src/app/tracks/track.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__track_service__ = __webpack_require__("../../../../../src/app/tracks/track.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__albums_album_service__ = __webpack_require__("../../../../../src/app/albums/album.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1652,18 +1662,86 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var TrackDetailsComponent = (function () {
-    function TrackDetailsComponent() {
+    function TrackDetailsComponent(albumService, trackService) {
+        this.albumService = albumService;
+        this.trackService = trackService;
+        this.mySettings = {
+            selectionLimit: 1
+        };
     }
     TrackDetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (this.track) {
+            this.selectedAlbum = this.track.album_id;
+        }
+        this.albumService
+            .getAlbums()
+            .then(function (albums) {
+            if (albums) {
+                console.log('response', albums);
+                _this.albums = albums;
+                _this.selectedAlbumOptions = albums.map(function (album) {
+                    return { id: album._id, name: album.name };
+                });
+            }
+        });
     };
+    TrackDetailsComponent.prototype.ngOnChanges = function (changes) {
+        console.log('changes', changes);
+        if (changes.track.currentValue) {
+            if (this.track.album_id.length)
+                this.selectedAlbum = this.track.album_id;
+        }
+        else {
+            this.selectedAlbum = null;
+        }
+    };
+    TrackDetailsComponent.prototype.createTrack = function (track) {
+        var _this = this;
+        // track.album_id = this.selectedAlbum[0]
+        this.trackService.createTrack(track).then(function (newTrack) {
+            _this.createHandler(newTrack);
+        });
+    };
+    TrackDetailsComponent.prototype.updateTrack = function (track) {
+        var _this = this;
+        this.trackService.updateTrack(track).then(function (updatedTrack) {
+            _this.updateHandler(updatedTrack);
+        });
+    };
+    TrackDetailsComponent.prototype.deleteTrack = function (trackId) {
+        var _this = this;
+        this.trackService.deleteTrack(trackId).then(function (deletedTrackId) {
+            _this.deleteHandler(deletedTrackId);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__track__["a" /* Track */])
+    ], TrackDetailsComponent.prototype, "track", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Function)
+    ], TrackDetailsComponent.prototype, "createHandler", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Function)
+    ], TrackDetailsComponent.prototype, "updateHandler", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Function)
+    ], TrackDetailsComponent.prototype, "deleteHandler", void 0);
     TrackDetailsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-track-details',
+            selector: 'track-details',
             template: __webpack_require__("../../../../../src/app/tracks/track-details/track-details.component.html"),
             styles: [__webpack_require__("../../../../../src/app/tracks/track-details/track-details.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__albums_album_service__["a" /* AlbumService */], __WEBPACK_IMPORTED_MODULE_2__track_service__["a" /* TrackService */]])
     ], TrackDetailsComponent);
     return TrackDetailsComponent;
 }());
@@ -1693,7 +1771,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/tracks/track-list/track-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  track-list works!\n</p>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-5\">\n    <h2>Tracks</h2>\n    <ul class=\"list-group\">\n      <li class=\"list-group-item\"\n        *ngFor=\"let track of tracks\"\n        (click)=\"selectTrack(track)\"\n        [class.active]=\"track === selectedTrack\">\n        {{track.name}}\n      </li>\n    </ul>\n    <button class=\"btn btn-warning\" (click)=\"createNewTrack()\">New</button>\n  </div>\n  <div class=\"col-md-5 col-md-offset-2\">\n    <track-details\n      [track]=\"selectedTrack\"\n      [createHandler]=\"addTrack\"\n      [updateHandler]=\"updateTrack\"\n      [deleteHandler]=\"deleteTrack\">\n    </track-details>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1703,6 +1781,7 @@ module.exports = "<p>\n  track-list works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrackListComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__track_service__ = __webpack_require__("../../../../../src/app/tracks/track.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1713,10 +1792,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var TrackListComponent = (function () {
-    function TrackListComponent() {
+    function TrackListComponent(trackService) {
+        var _this = this;
+        this.trackService = trackService;
+        this.getIndexOfTrack = function (trackId) {
+            return _this.tracks.findIndex(function (track) {
+                return track._id === trackId;
+            });
+        };
+        this.deleteTrack = function (trackId) {
+            var idx = _this.getIndexOfTrack(trackId);
+            if (idx !== -1) {
+                _this.tracks.splice(idx, 1);
+                _this.selectTrack(null);
+            }
+            return _this.tracks;
+        };
+        this.addTrack = function (track) {
+            _this.tracks.push(track);
+            _this.selectTrack(track);
+            return _this.tracks;
+        };
+        this.updateTrack = function (track) {
+            var idx = _this.getIndexOfTrack(track._id);
+            if (idx !== -1) {
+                _this.tracks[idx] = track;
+                _this.selectTrack(track);
+            }
+            return _this.tracks;
+        };
     }
     TrackListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.trackService
+            .getTracks()
+            .then(function (tracks) {
+            _this.tracks = tracks.map(function (track) { return track; });
+        });
+    };
+    TrackListComponent.prototype.selectTrack = function (track) {
+        this.selectedTrack = track;
+    };
+    TrackListComponent.prototype.createNewTrack = function () {
+        var track = {
+            name: '',
+            album_id: '',
+            albumNumber: 0,
+            mainArtist_id: '',
+            artists_ids: [],
+            youtubeUrl: '',
+            soundcloudUrl: '',
+            trackImageUrl: '',
+            description: ''
+        };
+        this.selectTrack(track);
     };
     TrackListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1724,9 +1855,90 @@ var TrackListComponent = (function () {
             template: __webpack_require__("../../../../../src/app/tracks/track-list/track-list.component.html"),
             styles: [__webpack_require__("../../../../../src/app/tracks/track-list/track-list.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__track_service__["a" /* TrackService */]])
     ], TrackListComponent);
     return TrackListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/tracks/track.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrackService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var TrackService = (function () {
+    function TrackService(http) {
+        this.http = http;
+        this.tracksUrl = '/api/Tracks';
+    }
+    TrackService.prototype.getTracks = function () {
+        return this.http.get(this.tracksUrl)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    TrackService.prototype.createTrack = function (newTrack) {
+        return this.http.post(this.tracksUrl, newTrack)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    TrackService.prototype.deleteTrack = function (delTrackId) {
+        return this.http.delete(this.tracksUrl + '/' + delTrackId)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    TrackService.prototype.updateTrack = function (putTrack) {
+        var putUrl = this.tracksUrl + '/' + putTrack._id;
+        return this.http.put(putUrl, putTrack)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    TrackService.prototype.handleError = function (error) {
+        var errMsg = (error.message) ? error.message :
+            error.status ? error.status + " - " + error.statusText : 'Server error';
+    };
+    TrackService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    ], TrackService);
+    return TrackService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/tracks/track.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Track; });
+var Track = (function () {
+    function Track() {
+    }
+    return Track;
 }());
 
 
@@ -1776,6 +1988,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+// import { IUserModel, UserSchema } from '../user';
 
 
 var UserDetailsComponent = (function () {
@@ -1815,16 +2028,9 @@ var UserDetailsComponent = (function () {
         });
     };
     UserDetailsComponent.prototype.validateUser = function (user) {
-        var doc = new mongoose.Document({}, __WEBPACK_IMPORTED_MODULE_1__user__["b" /* UserSchema */]);
-        doc.validate(function (error) {
-            // console.log('error', error);
-            return false;
-        });
-        // let doc = new mongoose.Document({}, UserSchema);
-        // doc.validate((error) => {
-        //   assert.ok(error);
-        //   assert.equal('Path `firstName` is required', error.errors['firstName'].message);
-        //   console.log('validating', error);
+        // var doc = new mongoose.Document({}, UserSchema);
+        // doc.validate(error => {
+        // console.log('error', error);
         //   return false;
         // });
         return true;
@@ -1964,7 +2170,7 @@ var UserListComponent = (function () {
         // UserModel.createUser('', '', '', '', '').then(res => {
         //   this.selectUser(<IUserModel>res);
         // }, err => {
-        //   if (err) { 
+        //   if (err) {
         //     console.log(err.message);
         //   }
         // });
@@ -2071,7 +2277,6 @@ var UserService = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IUserModel; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UserSchema; });
 /* unused harmony export UserModel */
 // export let Schema = mongoose.Schema;
 // export interface IUserModel extends mongoose.Document {
@@ -2081,66 +2286,65 @@ var IUserModel = (function () {
     return IUserModel;
 }());
 
-var schema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        require: true
-    },
-    lastName: {
-        type: String,
-        require: true
-    },
-    details: {
-        type: String,
-        require: true
-    },
-    email: {
-        type: String,
-        require: true,
-        lowercase: true,
-        unique: true,
-        required: 'Email address is required',
-        validate: {
-            validator: function (email) {
-                var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                return re.test(email);
-            },
-            message: 'Please fill a valid email address'
-        },
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-    },
-    phone: {
-        type: String,
-        validate: {
-            validator: function (v) {
-                return /\d{3}-\d{3}-\d{4}/.test(v);
-            },
-            message: '{VALUE} is not a valid phone number!'
-        },
-        required: [true, 'User phone number required']
-    },
-    createdAt: {
-        type: Date,
-        required: false
-    },
-    modifiedAt: {
-        type: Date,
-        required: false
-    }
-}).pre('save', function (next) {
-    if (this._doc) {
-        var doc = this._doc;
-        var now = new Date();
-        if (!doc.createdAt) {
-            doc.createdAt = now;
-        }
-        doc.modifiedAt = now;
-    }
-    next();
-    return this;
-});
+// let schema = new mongoose.Schema({
+//     firstName: {
+//         type: String,
+//         require: true
+//     },
+//     lastName: {
+//         type: String,
+//         require: true
+//     },
+//     details: {
+//         type: String,
+//         require: true
+//     },
+//     email: {
+//         type: String,
+//         require: true,
+//         lowercase: true,
+//         unique: true,
+//         required: 'Email address is required',
+//         validate: {
+//             validator: function (email) {
+//                 var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//                 return re.test(email)
+//             },
+//             message: 'Please fill a valid email address'},
+//         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+//     },
+//     phone: {
+//         type: String,
+//         validate: {
+//             validator: function (v) {
+//                 return /\d{3}-\d{3}-\d{4}/.test(v);
+//             },
+//             message: '{VALUE} is not a valid phone number!'
+//         },
+//         required: [true, 'User phone number required']
+//     },
+//     createdAt: {
+//         type: Date,
+//         required: false
+//     },
+//     modifiedAt: {
+//         type: Date,
+//         required: false
+//     }
+// }).pre('save', function (next) {
+//     if (this._doc) {
+//         let doc = <IUserModel>this._doc;
+//         let now = new Date();
+//         if (!doc.createdAt) {
+//             doc.createdAt = now;
+//         }
+//         doc.modifiedAt = now;
+//     }
+//     next();
+//     return this;
+// });
 // export let UserSchema = mongoose.model<IUserModel>('user', schema, 'users', true);
-var UserSchema = schema;
+// export let UserSchema = schema;
 var UserModel = (function () {
     function UserModel(userModel) {
         this._userModel = userModel;

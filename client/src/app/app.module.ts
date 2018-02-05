@@ -17,6 +17,7 @@ import { AuthService } from './auth/auth.service';
 import { UserService } from './users/user.service';
 import { AlbumService } from './albums/album.service';
 import { ArtistService } from './artists/artist.service';
+import { TrackService } from './tracks/track.service';
 
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { CallBackComponent } from './call-back/call-back.component';
@@ -138,7 +139,7 @@ const appRoutes: Routes = [
     MultiselectDropdownModule,
     HttpClientModule
   ],
-  providers: [AuthService, UserService, AlbumService, ArtistService],
+  providers: [AuthService, UserService, AlbumService, ArtistService, TrackService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

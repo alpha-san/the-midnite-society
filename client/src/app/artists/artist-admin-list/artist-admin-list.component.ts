@@ -95,6 +95,7 @@ export class ArtistAdminListComponent implements OnInit {
   }
 
   updateArtist = (artist: Artist) => {
+    console.log('updateArtist', artist);
     var idx = this.getIndexOfArtist(artist._id);
     if (idx !== -1) {
       this.artists[idx] = artist;

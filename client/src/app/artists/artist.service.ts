@@ -11,9 +11,14 @@ export class ArtistService {
   constructor(private http: Http) { }
 
   // get('/api/artists')
-  getArtists(): Promise<void | Artist[]> {
+  getArtists(include: String = null): Promise<void | Artist[]> {
 
-    return this.http.get(this.artistsUrl)
+    // return this.http.get(this.artistsUrl)
+    return this.http.get(this.artistsUrl, {
+        body: {
+          "include": include
+        }
+      })
       .toPromise()
       .then(response => response.json() as Artist[])
       .catch(this.handleError);

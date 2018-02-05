@@ -1,3 +1,37 @@
-<p>
-  track-details works!
-</p>
+<div *ngIf="track" class="row">
+  <div class="col-md-12">
+    <h2 *ngIf="track._id">Track Details</h2>
+    <h2 *ngIf="!track._id">New Track</h2>
+  </div>
+</div>
+<div *ngIf="track" class="row">
+  <form class="col-md-12">
+    <div class="form-group">
+      <label for="track-name">Track Name</label>
+      <input class="form-control" name="track-name" [(ngModel)]="track.name" placeholder="Track Name"/>
+    </div>
+    <div class="form-group">
+      <label for="track-albums">Album</label>
+      <ss-multiselect-dropdown name="track-albums" [options]="selectedTrackOptions" [(ngModel)]="selectedTrack" [settings]="mySettings"></ss-multiselect-dropdown>
+    </div>
+    <div class="form-group">
+      <label for="track-image-url">Track Image Url</label>
+      <input class="form-control" name="track-image-url" [(ngModel)]="track.trackImageUrl" placeholder="Track Image URL"/>
+    </div>
+    <div class="form-group">
+      <label for="track-description">Track Description</label>
+      <input class="form-control" name="track-description" [(ngModel)]="track.description" placeholder="Track Description"/>
+    </div>
+    <div class="form-group">
+      <label for="track-soundcloud-url">Soundcloud Url</label>
+      <input class="form-control" name="track-soundcloud-url" [(ngModel)]="track.soundcloudUrl" placeholder="Track Soundcloud URL"/>
+    </div>
+    <div class="form-group">
+      <label for="track-youtube-url">Youtube Url</label>
+      <input class="form-control" name="track-youtube-url" [(ngModel)]="track.youtubeUrl" placeholder="Youtube URL"/>
+    </div>
+    <button class="btn btn-primary" *ngIf="!track._id" (click)="createTrack(track)">Create</button>
+    <button class="btn btn-info" *ngIf="track._id" (click)="updateTrack(track)">Update</button>
+    <button class="btn btn-danger" *ngIf="track._id" (click)="deleteTrack(track._id)">Delete</button>
+  </form>
+</div>

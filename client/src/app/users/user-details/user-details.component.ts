@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IUserModel, UserSchema } from '../user';
+// import { IUserModel, UserSchema } from '../user';
+import { IUserModel } from '../user';
 import { UserService } from '../user.service';
 import * as assert from 'assert';
 
@@ -53,18 +54,9 @@ export class UserDetailsComponent implements OnInit {
 
   validateUser(user: IUserModel) {
 
-    var doc = new mongoose.Document({}, UserSchema);
-    doc.validate(error => {
+    // var doc = new mongoose.Document({}, UserSchema);
+    // doc.validate(error => {
       // console.log('error', error);
-      return false;
-    });
-
-    // let doc = new mongoose.Document({}, UserSchema);
-    // doc.validate((error) => {
-    //   assert.ok(error);
-    //   assert.equal('Path `firstName` is required', error.errors['firstName'].message);
-    //   console.log('validating', error);
-
     //   return false;
     // });
 
