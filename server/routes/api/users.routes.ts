@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 // import { IUserModel, UserSchema } from '../../../client/src/app/users/user';
-import { IUserModel, UserSchema } from '../../models/user';
+// import { IUserModel } from '../../models/user';
 
 var express = require('express');
 var router = express.Router();
@@ -134,11 +134,11 @@ export class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IW
 
 }
 
-export class UserRepository extends RepositoryBase<IUserModel> {
-    constructor() {
-        super(UserSchema);
-    }
-}
+// export class UserRepository extends RepositoryBase<IUserModel> {
+//     constructor() {
+//         super(UserSchema);
+//     }
+// }
 
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);

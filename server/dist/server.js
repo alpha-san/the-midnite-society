@@ -34,6 +34,7 @@ app.get('*', function (req, res) {
     var rootDir = path.join(__dirname + '../../../client/dist');
     res.sendFile('index.html', { root: rootDir });
 });
+// mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB server connection error'));

@@ -1,14 +1,12 @@
-var express = require('express');
-var router = express.Router();
+import { logSuccess, handleError, ARTISTS_COLLECTION, ALBUMS_COLLECTION } from '../common';
+
+const express = require('express');
+const router = express.Router();
 
 export {};
 
-const ARTISTS_COLLECTION = "artists";
-const ALBUMS_COLLECTION = "albums";
-
-// ARTISTS ROUTES BELOW
-
-router.get("/", function (req, res) {
+router.get("/", (req, res) => {
+  console.log('GET', req);
 
   let db = req.app.db;
   db.collection(ARTISTS_COLLECTION)
@@ -24,75 +22,77 @@ router.get("/", function (req, res) {
     ])
     .toArray((err, docs) => {
       if (err) handleError(res, err.message, "Failed to get albums for artists", 500);
-      console.log('success', docs);
+      logSuccess(docs);
       return res.status(200).json(docs);
     });
 });
 
-router.post("/", function (req, res) {
-  var newContact = req.body;
+router.post("/", (req, res) => {
+  let newContact = req.body;
   newContact._id = req.app.mongoose.Types.ObjectId();
   newContact.artistUrl = newContact.artistName.toLowerCase().replace(/ /g,'');
-  console.log('before post', newContact);
 
   // validation error checking here
   //   if (!req.body.name) {
   //     handleError(res, "Invalid artist input", "Must provide a name.", 400);
   //   }
 
-  req.app.db.collection(ARTISTS_COLLECTION).insertOne(newContact, function (err, doc) {
-    console.log('newArtist', newContact);
+  req.app.db.collection(ARTISTS_COLLECTION).insertOne(newContact, (err, doc) => {
     if (err) {
       handleError(res, err.message, "Failed to create new artist.", 500);
     } else {
-      console.log('success');
+      logSuccess(doc.ops[0]);
       res.status(201).json(doc.ops[0]);
     }
   });
-  // mongoose.Types.ObjectId();
 });
 
-router.get("/:id", function (req, res) {
+router.get("/:id", (req, res) => {
 });
 
-router.put("/:id", function (req, res) {
-  var updatedArtist = req.body;
-  console.log('server.js:put', updatedArtist);
+router.put("/:id", (req, res) => {
+  let updatedArtist = req.body,
+    updatedArtistId = req.body._id;
 
   req.app.db.collection(ARTISTS_COLLECTION).updateOne(
-    { "_id": new req.app.mongoose.Types.ObjectId(updatedArtist._id) },
+    { "_id": new req.app.mongoose.Types.ObjectId(updatedArtistId) },
     {
-      $set:
-        {
-          "firstName": updatedArtist.firstName
-        }
-    },
-    { $set: updatedArtist },
-    function (err, doc) {
-      if (err) {
-        console.log('Failed to update artist', err);
-        handleError(res, err.message, "Failed to update artist", 500);
-      } else {
-        console.log('success?', doc.ops);
-        res.status(201).json(doc.ops);
+      $set: acceptedArgs(updatedArtist)
+    }, (err, doc) => {
+      if (err) { handleError(res, err.message, "Failed to update artist", 500); }
+      else {
+        logSuccess(updatedArtist);
+        res.status(201).json(updatedArtist);
       }
     });
 });
 
-router.delete("/:id", function (req, res) {
-  req.app.db.collection(ARTISTS_COLLECTION).remove({ _id: new req.app.mongoose.Types.ObjectId(req.params.id) }, function (err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to delete artist.", 500);
-    } else {
-      // res.status(201).json(doc.ops[0]);
-      res.status(201);
-    }
-  })
+router.delete("/:id", (req, res) => {
+  req.app.db.collection(ARTISTS_COLLECTION).remove({ _id: new req.app.mongoose.Types.ObjectId(req.params.id) }, (err, doc) => {
+    if (err) handleError(res, err.message, "Failed to delete artist.", 500);
+    else res.status(201);
+  });
 });
 
-function handleError(res, reason, message, code) {
-  console.log("ERROR: " + reason);
-  res.status(code || 500).json({ "error": message });
+function acceptedArgs(updatedArtist) {
+  return {
+    "firstName": updatedArtist.firstName,
+    "lastName": updatedArtist.lastName,
+    "details": updatedArtist.details,
+    "email": updatedArtist.email,
+    "phone": updatedArtist.phone,
+    "artistUrl": updatedArtist.artistUrl,
+    "artistName": updatedArtist.artistName,
+    "soundcloudUrl": updatedArtist.soundcloudUrl,
+    "twitterUrl": updatedArtist.twitterUrl,
+    "facebookUrl": updatedArtist.facebookUrl,
+    "instagramUrl": updatedArtist.instagramUrl,
+    "youtubeUrl": updatedArtist.youtubeUrl,
+    "snapchatUrl": updatedArtist.snapchatUrl,
+    "tagLine": updatedArtist.tagLine,
+    "biography": updatedArtist.biography,
+    "isAdmin:": updatedArtist.isAdmin
+  };
 }
 
 module.exports = router;

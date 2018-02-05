@@ -39,6 +39,7 @@ app.get('*', (req, res) => {
   res.sendFile('index.html', { root: rootDir });
 });
 
+// mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 

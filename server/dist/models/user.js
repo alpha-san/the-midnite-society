@@ -1,73 +1,72 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose = require("mongoose");
-exports.Schema = mongoose.Schema;
-var schema = new exports.Schema({
-    firstName: {
-        type: String,
-        require: true
-    },
-    lastName: {
-        type: String,
-        require: true
-    },
-    details: {
-        type: String,
-        require: true
-    },
-    email: {
-        type: String,
-        require: true,
-        lowercase: true,
-        unique: true,
-        required: 'Email address is required',
-        validate: {
-            validator: function (email) {
-                var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                return re.test(email);
-            },
-            message: 'Please fill a valid email address'
-        },
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-    },
-    phone: {
-        type: String,
-        validate: {
-            validator: function (v) {
-                return /\d{3}-\d{3}-\d{4}/.test(v);
-            },
-            message: '{VALUE} is not a valid phone number!'
-        },
-        required: [true, 'User phone number required']
-    },
-    createdAt: {
-        type: Date,
-        required: false
-    },
-    modifiedAt: {
-        type: Date,
-        required: false
+// export let Schema = mongoose.Schema;
+// export interface IUserModel extends mongoose.Document {
+var IUserModel = /** @class */ (function () {
+    function IUserModel() {
     }
-}).pre('save', function (next) {
-    if (this._doc) {
-        var doc = this._doc;
-        var now = new Date();
-        if (!doc.createdAt) {
-            doc.createdAt = now;
-        }
-        doc.modifiedAt = now;
-    }
-    next();
-    return this;
-});
-var TestMongoose = /** @class */ (function () {
-    function TestMongoose() {
-    }
-    TestMongoose.prototype.sumthin = function () { console.log('mongoose'); };
-    return TestMongoose;
+    return IUserModel;
 }());
-exports.TestMongoose = TestMongoose;
-exports.UserSchema = mongoose.model('user', schema, 'users', true);
+exports.IUserModel = IUserModel;
+// let schema = new mongoose.Schema({
+//     firstName: {
+//         type: String,
+//         require: true
+//     },
+//     lastName: {
+//         type: String,
+//         require: true
+//     },
+//     details: {
+//         type: String,
+//         require: true
+//     },
+//     email: {
+//         type: String,
+//         require: true,
+//         lowercase: true,
+//         unique: true,
+//         required: 'Email address is required',
+//         validate: {
+//             validator: function (email) {
+//                 var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//                 return re.test(email)
+//             },
+//             message: 'Please fill a valid email address'},
+//         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+//     },
+//     phone: {
+//         type: String,
+//         validate: {
+//             validator: function (v) {
+//                 return /\d{3}-\d{3}-\d{4}/.test(v);
+//             },
+//             message: '{VALUE} is not a valid phone number!'
+//         },
+//         required: [true, 'User phone number required']
+//     },
+//     createdAt: {
+//         type: Date,
+//         required: false
+//     },
+//     modifiedAt: {
+//         type: Date,
+//         required: false
+//     }
+// }).pre('save', function (next) {
+//     if (this._doc) {
+//         let doc = <IUserModel>this._doc;
+//         let now = new Date();
+//         if (!doc.createdAt) {
+//             doc.createdAt = now;
+//         }
+//         doc.modifiedAt = now;
+//     }
+//     next();
+//     return this;
+// });
+// export let UserSchema = mongoose.model<IUserModel>('user', schema, 'users', true);
+// export let UserSchema = schema;
 var UserModel = /** @class */ (function () {
     function UserModel(userModel) {
         this._userModel = userModel;
