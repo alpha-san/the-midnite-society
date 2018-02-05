@@ -1,7 +1,7 @@
 export class Album {
     _id?: string;
     name: string;
-    artist_id: string;
+    artistId: string;
     albumImageUrl: string;
     description: string;
     soundcloudUrl: string;

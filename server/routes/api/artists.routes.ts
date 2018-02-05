@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
         $lookup: {
           from: ALBUMS_COLLECTION,
           localField: "_id",
-          foreignField: "artist_id",
+          foreignField: "artistId",
           as: "albums"
         }
       }

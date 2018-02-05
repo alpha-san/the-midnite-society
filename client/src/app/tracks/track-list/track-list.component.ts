@@ -38,10 +38,10 @@ export class TrackListComponent implements OnInit {
   createNewTrack() {
     var track: Track = {
       name: '',
-      album_id: '',
+      albumId: '',
       albumNumber: 0,
-      mainArtist_id: '',
-      artists_ids: [],
+      mainArtistId: '',
+      artistsIds: [],
       youtubeUrl: '',
       soundcloudUrl: '',
       trackImageUrl: '',

@@ -2,19 +2,19 @@ import * as express from 'express';
 import * as bodyParser from "body-parser";
 import * as path from 'path';
 
-var users = require('./routes/api/users.routes');
-var artists = require('./routes/api/artists.routes');
-var albums = require('./routes/api/albums.routes');
-var tracks = require('./routes/api/tracks.routes');
-var blogposts = require('./routes/api/blogposts.routes');
-var mongoose = require('mongoose');
+import * as users from './routes/api/users.routes';
+let artists = require('./routes/api/artists.routes');
+let albums = require('./routes/api/albums.routes');
+let tracks = require('./routes/api/tracks.routes');
+let blogposts = require('./routes/api/blogposts.routes');
+let mongoose = require('mongoose');
 
 // load environment variables
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
 
-var app = express();
+let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -41,7 +41,7 @@ app.get('*', (req, res) => {
 
 // mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
-var db = mongoose.connection;
+let db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB server connection error'));
 db.once('open', function() {
@@ -50,14 +50,8 @@ db.once('open', function() {
   console.log('Database connection ready')
 
   // Initialize app
-  var server = app.listen(process.env.PORT || 8080, function() {
-    var port = server.address().port;
+  let server = app.listen(process.env.PORT || 8080, function() {
+    let port = server.address().port;
     console.log('App now running on port', port);
   });
 });
-
-// Generic error handler used by all endpoints.
-function handleError(res, reason, message, code) {
-  console.log("ERROR: " + reason);
-  res.status(code || 500).json({ "error": message });
-}

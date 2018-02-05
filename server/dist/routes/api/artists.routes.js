@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
             $lookup: {
                 from: common_1.ALBUMS_COLLECTION,
                 localField: "_id",
-                foreignField: "artist_id",
+                foreignField: "artistId",
                 as: "albums"
             }
         }

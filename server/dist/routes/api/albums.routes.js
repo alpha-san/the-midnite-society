@@ -15,7 +15,7 @@ router.get("/", function (req, res) {
 });
 router.post("/", function (req, res) {
     var newAlbum = req.body;
-    newAlbum.artist_id = req.app.mongoose.Types.ObjectId(newAlbum.artist_id);
+    newAlbum.artistId = req.app.mongoose.Types.ObjectId(newAlbum.artistId);
     req.app.db.collection(common_1.ALBUMS_COLLECTION).insertOne(newAlbum, function (err, doc) {
         if (err)
             common_1.handleError(res, err.message, "Failed to create new album.", 500);
@@ -28,21 +28,34 @@ router.post("/", function (req, res) {
 router.get("/:id", function (req, res) { });
 router.put("/:id", function (req, res) {
     var updatedAlbum = req.body;
-    req.app.db.collection(common_1.ALBUMS_COLLECTION).findOneAndUpdate({ _id: updatedAlbum._id }, updatedAlbum, { upsert: true }, function (err) {
+    req.app.db.collection(common_1.ALBUMS_COLLECTION).findOneAndUpdate({ "_id": new req.app.mongoose.Types.ObjectId(updatedAlbum._id) }, {
+        $set: acceptedArgs(updatedAlbum)
+    }, function (err) {
         if (err)
             common_1.handleError(res, err.message, "Failed to update albums", 500);
         common_1.logSuccess('PUT', updatedAlbum);
     });
 });
 router.delete("/:id", function (req, res) {
-    req.app.db.collection(common_1.ALBUMS_COLLECTION).remove({ _id: new req.app.mongodb.ObjectId(req.params.id) }, function (err, doc) {
-        if (err)
+    req.app.db.collection(common_1.ALBUMS_COLLECTION).remove({ _id: new req.app.mongoose.Types.ObjectId(req.params.id) }, function (err, doc) {
+        if (err) {
             common_1.handleError(res, err.message, "Failed to delete album.", 500);
+        }
         else {
             common_1.logSuccess(doc);
             res.status(201);
         }
     });
 });
+function acceptedArgs(updatedAlbum) {
+    return {
+        "name": updatedAlbum.name,
+        "artistId": updatedAlbum.artistId,
+        "albumImageUrl": updatedAlbum.albumImageUrl,
+        "description": updatedAlbum.description,
+        "soundcloudUrl": updatedAlbum.soundcloudUrl,
+        "youtubeUrl": updatedAlbum.youtubeUrl
+    };
+}
 module.exports = router;
 //# sourceMappingURL=albums.routes.js.map

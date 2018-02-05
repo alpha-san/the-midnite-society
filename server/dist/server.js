@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-var users = require('./routes/api/users.routes');
+var users = require("./routes/api/users.routes");
 var artists = require('./routes/api/artists.routes');
 var albums = require('./routes/api/albums.routes');
 var tracks = require('./routes/api/tracks.routes');
@@ -48,9 +48,4 @@ db.once('open', function () {
         console.log('App now running on port', port);
     });
 });
-// Generic error handler used by all endpoints.
-function handleError(res, reason, message, code) {
-    console.log("ERROR: " + reason);
-    res.status(code || 500).json({ "error": message });
-}
 //# sourceMappingURL=server.js.map

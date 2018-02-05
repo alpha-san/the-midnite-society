@@ -75,7 +75,7 @@ var AlbumDetailsComponent = (function () {
     AlbumDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.album) {
-            this.selectedUser = this.album.artist_id;
+            this.selectedUser = this.album.artistId;
         }
         this.artistService
             .getArtists()
@@ -92,8 +92,8 @@ var AlbumDetailsComponent = (function () {
     AlbumDetailsComponent.prototype.ngOnChanges = function (changes) {
         console.log('changes', changes);
         if (changes.album.currentValue) {
-            if (this.album.artist_id.length)
-                this.selectedUser = this.album.artist_id;
+            if (this.album.artistId.length)
+                this.selectedUser = this.album.artistId;
         }
         else {
             this.selectedUser = null;
@@ -101,7 +101,7 @@ var AlbumDetailsComponent = (function () {
     };
     AlbumDetailsComponent.prototype.createAlbum = function (album) {
         var _this = this;
-        album.artist_id = this.selectedUser[0];
+        album.artistId = this.selectedUser[0];
         this.albumService.createAlbum(album).then(function (newAlbum) {
             _this.createHandler(newAlbum);
         });
@@ -323,7 +323,7 @@ var AlbumsListComponent = (function () {
     AlbumsListComponent.prototype.createNewAlbum = function () {
         var album = {
             name: '',
-            artist_id: '',
+            artistId: '',
             albumImageUrl: '',
             description: '',
             soundcloudUrl: '',
@@ -368,7 +368,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" routerLink=\"/\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/home\" routerLinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/creations\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/shop\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a routerLink=\"/contact\" routerLinkActive=\"active\">Contact</a>\n        </li>\n        <li *ngIf=\"auth.isAuthenticated()\" class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">Log In</a>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">Log Out</a>\n        </li>\n      </ul>\n    </div>\n    <!--/.nav-collapse -->\n  </div>\n</nav>\n\n<div class=\"router-outlet-div\">\n  <router-outlet></router-outlet>\n</div>\n"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\"\n        aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" routerLink=\"/\">The Midnite Society</a>\n    </div>\n    <div id=\"navbar\" class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav\">\n        <li class=\"active\">\n          <a routerLink=\"/home\" routerLinkActive=\"active\">Home</a>\n        </li>\n        <li>\n          <a routerLink=\"/creations\" routerLinkActive=\"active\">Creations</a>\n        </li>\n        <li>\n          <a routerLink=\"/artist/all\" routerLinkActive=\"active\">Artists</a>\n        </li>\n        <li>\n          <a routerLink=\"/blog\" routerLinkActive=\"active\">Blog</a>\n        </li>\n        <li>\n          <a routerLink=\"/shop\" routerLinkActive=\"active\">Shop</a>\n        </li>\n        <li>\n          <a routerLink=\"/contact\" routerLinkActive=\"active\">Contact</a>\n        </li>\n        <li *ngIf=\"auth.isAuthenticated()\" class=\"dropdown\">\n          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Admin Menu\n            <span class=\"caret\"></span>\n          </a>\n          <ul class=\"dropdown-menu\">\n            <li>\n              <a routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n            </li>\n            <li>\n              <a routerLink=\"/artists\" routerLinkActive=\"active\">Artists</a>\n            </li>\n            <li>\n              <a routerLink=\"/albums\" routerLinkActive=\"active\">Albums</a>\n            </li>\n            <li>\n              <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n            </li>\n            <!-- <li>\n              <a routerLink=\"/blogs\" routerLinkActive=\"active\">Blogs</a>\n            </li> -->\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"!auth.isAuthenticated()\" (click)=\"auth.login()\">Log In</a>\n        </li>\n        <li>\n          <a href=\"#\" *ngIf=\"auth.isAuthenticated()\" (click)=\"auth.logout()\">Log Out</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n\n<div class=\"router-outlet-div\">\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -1639,7 +1639,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/tracks/track-details/track-details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"track\" class=\"row\">\n  <div class=\"col-md-12\">\n    <h2 *ngIf=\"track._id\">Track Details</h2>\n    <h2 *ngIf=\"!track._id\">New Track</h2>\n  </div>\n</div>\n<div *ngIf=\"track\" class=\"row\">\n  <form class=\"col-md-12\">\n    <div class=\"form-group\">\n      <label for=\"track-name\">Track Name</label>\n      <input class=\"form-control\" name=\"track-name\" [(ngModel)]=\"track.name\" placeholder=\"Track Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-albums\">Album</label>\n      <ss-multiselect-dropdown name=\"track-albums\" [options]=\"selectedTrackOptions\" [(ngModel)]=\"selectedTrack\" [settings]=\"mySettings\"></ss-multiselect-dropdown>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-image-url\">Track Image Url</label>\n      <input class=\"form-control\" name=\"track-image-url\" [(ngModel)]=\"track.trackImageUrl\" placeholder=\"Track Image URL\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-description\">Track Description</label>\n      <input class=\"form-control\" name=\"track-description\" [(ngModel)]=\"track.description\" placeholder=\"Track Description\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-soundcloud-url\">Soundcloud Url</label>\n      <input class=\"form-control\" name=\"track-soundcloud-url\" [(ngModel)]=\"track.soundcloudUrl\" placeholder=\"Track Soundcloud URL\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-youtube-url\">Youtube Url</label>\n      <input class=\"form-control\" name=\"track-youtube-url\" [(ngModel)]=\"track.youtubeUrl\" placeholder=\"Youtube URL\"/>\n    </div>\n    <button class=\"btn btn-primary\" *ngIf=\"!track._id\" (click)=\"createTrack(track)\">Create</button>\n    <button class=\"btn btn-info\" *ngIf=\"track._id\" (click)=\"updateTrack(track)\">Update</button>\n    <button class=\"btn btn-danger\" *ngIf=\"track._id\" (click)=\"deleteTrack(track._id)\">Delete</button>\n  </form>\n</div>\n"
+module.exports = "<div *ngIf=\"track\" class=\"row\">\n  <div class=\"col-md-12\">\n    <h2 *ngIf=\"track._id\">Track Details</h2>\n    <h2 *ngIf=\"!track._id\">New Track</h2>\n  </div>\n</div>\n<div *ngIf=\"track\" class=\"row\">\n  <form class=\"col-md-12\">\n    <div class=\"form-group\">\n      <label for=\"track-name\">Track Name</label>\n      <input class=\"form-control\" name=\"track-name\" [(ngModel)]=\"track.name\" placeholder=\"Track Name\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-albums\">Album</label>\n      <ss-multiselect-dropdown name=\"track-albums\" [options]=\"selectedAlbumOptions\" [(ngModel)]=\"selectedAlbum\" [settings]=\"mySettings\"></ss-multiselect-dropdown>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-image-url\">Track Image Url</label>\n      <input class=\"form-control\" name=\"track-image-url\" [(ngModel)]=\"track.trackImageUrl\" placeholder=\"Track Image URL\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-description\">Track Description</label>\n      <input class=\"form-control\" name=\"track-description\" [(ngModel)]=\"track.description\" placeholder=\"Track Description\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-soundcloud-url\">Soundcloud Url</label>\n      <input class=\"form-control\" name=\"track-soundcloud-url\" [(ngModel)]=\"track.soundcloudUrl\" placeholder=\"Track Soundcloud URL\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"track-youtube-url\">Youtube Url</label>\n      <input class=\"form-control\" name=\"track-youtube-url\" [(ngModel)]=\"track.youtubeUrl\" placeholder=\"Youtube URL\"/>\n    </div>\n    <button class=\"btn btn-primary\" *ngIf=\"!track._id\" (click)=\"createTrack(track)\">Create</button>\n    <button class=\"btn btn-info\" *ngIf=\"track._id\" (click)=\"updateTrack(track)\">Update</button>\n    <button class=\"btn btn-danger\" *ngIf=\"track._id\" (click)=\"deleteTrack(track._id)\">Delete</button>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -1676,7 +1676,7 @@ var TrackDetailsComponent = (function () {
     TrackDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.track) {
-            this.selectedAlbum = this.track.album_id;
+            this.selectedAlbum = this.track.albumId;
         }
         this.albumService
             .getAlbums()
@@ -1693,8 +1693,8 @@ var TrackDetailsComponent = (function () {
     TrackDetailsComponent.prototype.ngOnChanges = function (changes) {
         console.log('changes', changes);
         if (changes.track.currentValue) {
-            if (this.track.album_id.length)
-                this.selectedAlbum = this.track.album_id;
+            if (this.track.albumId.length)
+                this.selectedAlbum = this.track.albumId;
         }
         else {
             this.selectedAlbum = null;
@@ -1702,7 +1702,7 @@ var TrackDetailsComponent = (function () {
     };
     TrackDetailsComponent.prototype.createTrack = function (track) {
         var _this = this;
-        // track.album_id = this.selectedAlbum[0]
+        track.albumId = this.selectedAlbum[0];
         this.trackService.createTrack(track).then(function (newTrack) {
             _this.createHandler(newTrack);
         });
@@ -1838,10 +1838,10 @@ var TrackListComponent = (function () {
     TrackListComponent.prototype.createNewTrack = function () {
         var track = {
             name: '',
-            album_id: '',
+            albumId: '',
             albumNumber: 0,
-            mainArtist_id: '',
-            artists_ids: [],
+            mainArtistId: '',
+            artistsIds: [],
             youtubeUrl: '',
             soundcloudUrl: '',
             trackImageUrl: '',

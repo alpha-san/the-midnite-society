@@ -29,7 +29,7 @@ export class TrackDetailsComponent implements OnInit {
 
   ngOnInit() {
     if (this.track) {
-      this.selectedAlbum = this.track.album_id;
+      this.selectedAlbum = this.track.albumId;
     }
 
     this.albumService
@@ -49,15 +49,15 @@ export class TrackDetailsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     console.log('changes',  changes);
     if (changes.track.currentValue) {
-      if (this.track.album_id.length)
-        this.selectedAlbum = this.track.album_id;
+      if (this.track.albumId.length)
+        this.selectedAlbum = this.track.albumId;
     } else {
       this.selectedAlbum = null;
     }
   }
 
   createTrack(track: Track) {
-    // track.album_id = this.selectedAlbum[0]
+    track.albumId = this.selectedAlbum[0]
     this.trackService.createTrack(track).then((newTrack: Track) => {
       this.createHandler(newTrack);
     })

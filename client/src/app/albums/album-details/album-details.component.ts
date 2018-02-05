@@ -28,7 +28,7 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (this.album) {
-      this.selectedUser = this.album.artist_id;
+      this.selectedUser = this.album.artistId;
     }
 
     this.artistService
@@ -48,15 +48,15 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     console.log('changes',  changes);
     if (changes.album.currentValue) {
-      if (this.album.artist_id.length)
-        this.selectedUser = this.album.artist_id;
+      if (this.album.artistId.length)
+        this.selectedUser = this.album.artistId;
     } else {
       this.selectedUser = null;
     }
   }
 
   createAlbum(album: Album) {
-    album.artist_id = this.selectedUser[0]
+    album.artistId = this.selectedUser[0]
     this.albumService.createAlbum(album).then((newAlbum: Album) => {
       this.createHandler(newAlbum);
     })
